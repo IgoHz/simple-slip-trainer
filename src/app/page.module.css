@@ -4,8 +4,13 @@
   flex-direction: column;
 }
 
-.header, .main, .footer {
+.main,
+.footer {
   margin: 0 auto;
+}
+
+.footer {
+  z-index: 1000;
 }
 
 .main {

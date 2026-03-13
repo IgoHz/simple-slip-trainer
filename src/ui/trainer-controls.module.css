@@ -1,5 +1,6 @@
-.controls {
+.trainerControls {
   display: flex;
   justify-content: center;
   gap: 16px;
+  z-index: 1000;
 }

@@ -1,15 +1,16 @@
 'use client'
 
-import { type ChangeEvent, useState } from "react";
+import { type ChangeEvent } from "react";
 import styles from './rate-counter.module.css';
-
-const DEFAULT_RATE = 60;
+import { useTrainerControlsState } from "@/store/trainer-controls/provider";
+import { setRate } from "@/store/trainer-controls/actions";
 
 export default function RateCounter() {
-  const [rate, setRate] = useState(DEFAULT_RATE);
+  const [state, dispatch] = useTrainerControlsState();
+  const { rate } = state;
 
   function handleRateChange(event: ChangeEvent<HTMLInputElement>) {
-    setRate(+event.target.value);
+    dispatch(setRate(+event.target.value));
   }
 
   return (

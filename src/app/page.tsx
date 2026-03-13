@@ -1,13 +1,9 @@
-import Trainer from "@/ui/trainer";
 import styles from "./page.module.css";
-import Controls from "@/ui/controls";
+import Trainer from "@/ui/trainer";
 
 export default function Page() {
   return (
     <div className={styles.page}>
-      <header className={styles.header}>
-        <Controls />
-      </header>
       <main className={styles.main}>
         <Trainer />
       </main>

@@ -1,11 +1,15 @@
 'use client'
 
 import { useEffect, useRef, useState } from "react";
-import styles from './stopwatch-control.module.css';
+import styles from './stopwatch.module.css';
+import { useTrainerControlsState } from "@/store/trainer-controls/provider";
+import { setIsPlaying } from "@/store/trainer-controls/actions";
 
-export default function StopwatchControl() {
+export default function Stopwatch() {
+  const [state, dispatch] = useTrainerControlsState();
+  const { isPlaying } = state;
+
   const [time, setTime] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
 
   const timerId = useRef<NodeJS.Timeout | number | undefined>(undefined);
   
@@ -25,7 +29,7 @@ export default function StopwatchControl() {
   }
 
   function handlePlayClick() {
-    setIsPlaying(!isPlaying);
+    dispatch(setIsPlaying(!isPlaying));
   }
 
   function handleResetClick() {
@@ -33,7 +37,7 @@ export default function StopwatchControl() {
   }
 
   return (
-    <div className={styles.stopwatchControl}>
+    <div className={styles.stopwatch}>
       <div>
         {time}
       </div>
