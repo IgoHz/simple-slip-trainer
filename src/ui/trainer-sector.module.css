@@ -74,7 +74,6 @@
 }
 
 .animated {
-  animation-duration: 0.75s;
   animation-timing-function: ease-in;
   animation-direction: alternate;
   animation-iteration-count: infinite;

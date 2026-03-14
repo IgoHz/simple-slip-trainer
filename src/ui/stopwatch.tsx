@@ -1,9 +1,10 @@
 'use client'
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useState } from "react";
 import styles from './stopwatch.module.css';
 import { useTrainerControlsState } from "@/store/trainer-controls/provider";
 import { setIsPlaying } from "@/store/trainer-controls/actions";
+import { useInterval } from "@/lib/hooks";
 
 export default function Stopwatch() {
   const [state, dispatch] = useTrainerControlsState();
@@ -11,17 +12,11 @@ export default function Stopwatch() {
 
   const [time, setTime] = useState(0);
 
-  const timerId = useRef<NodeJS.Timeout | number | undefined>(undefined);
-  
-  useEffect(() => {
-    if (isPlaying) {
-      timerId.current = setInterval(() => {
-        setTime((prevTime) => prevTime + 1);
-      }, 1000);
-    } else {
-      clearInterval(timerId.current);
-    }
-  }, [isPlaying]);
+  const intervalCallback = useCallback(() => {
+    setTime((prevTime) => prevTime + 1);
+  }, []);
+
+  useInterval(isPlaying, intervalCallback, 1000);
 
   let label = 'Play';
   if (isPlaying) {

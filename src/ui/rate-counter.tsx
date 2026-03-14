@@ -7,7 +7,7 @@ import { setRate } from "@/store/trainer-controls/actions";
 
 export default function RateCounter() {
   const [state, dispatch] = useTrainerControlsState();
-  const { rate } = state;
+  const { rate, isPlaying } = state;
 
   function handleRateChange(event: ChangeEvent<HTMLInputElement>) {
     dispatch(setRate(+event.target.value));
@@ -15,7 +15,11 @@ export default function RateCounter() {
 
   return (
     <div className={styles.rateCounter}>
-      Rate: <input value={rate} onChange={handleRateChange} />
+      Rate: 
+      <input
+        value={rate}
+        disabled={isPlaying}
+        onChange={handleRateChange} />
     </div>
   );
 }
