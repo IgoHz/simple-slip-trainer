@@ -1,28 +1,22 @@
 @keyframes punch-left {
   0% {
     opacity: 0;
-    top: 0;
-    right: 0;
   }
   100% {
     opacity: 1;
-    top: 5%;
-    right: 15%;
-    transform: rotate(-15deg);
+    left: 65%;
+    transform: translate(-50%, -50%) rotateY(180deg) rotate(-15deg);
   }
 }
 
 @keyframes punch-right {
   0% {
     opacity: 0;
-    top: 0;
-    left: 0;
   }
   100% {
     opacity: 1;
-    top: 5%;
-    left: 15%;
-    transform: rotateY(180deg) rotate(-15deg);
+    left: 35%;
+    transform: translate(-50%, -50%) rotate(-15deg);
   }
 }
 
@@ -55,18 +49,19 @@
 
 .image {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  top: 50%;
+  left: 50%;
+
+  width: 50%;
+  height: 50%;
 }
 
-.leftUpper .image,
-.leftLower .image {
-  transform: rotateY(180deg) rotate(85deg);
+:is(.leftUpper, .leftLower) .image {
+  transform: translate(-50%, -50%) rotateY(180deg) rotate(85deg);
 }
 
-.rightUpper .image,
-.rightLower .image {
-  transform: rotate(85deg);
+:is(.rightUpper, .rightLower) .image {
+  transform: translate(-50%, -50%) rotate(85deg);
 }
 
 .static {
@@ -79,12 +74,10 @@
   animation-iteration-count: infinite;
 }
 
-.leftUpper .animated,
-.leftLower .animated {
-  animation-name: punch-right;
+:is(.leftUpper, .leftLower) .animated {
+  animation-name: punch-left;
 }
 
-.rightUpper .animated,
-.rightLower .animated {
-  animation-name: punch-left;
+:is(.rightUpper, .rightLower) .animated {
+  animation-name: punch-right;
 }

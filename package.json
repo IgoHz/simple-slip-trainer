@@ -10,7 +10,8 @@
     "lint": "eslint --fix",
     "type-check": "tsc --noEmit",
     "format": "prettier . --write",
-    "validate": "pnpm build && pnpm lint && pnpm type-check && pnpm format"
+    "format-check": "prettier . --check",
+    "validate": "pnpm build && pnpm lint && pnpm type-check && pnpm format-check"
   },
   "dependencies": {
     "next": "16.1.6",
