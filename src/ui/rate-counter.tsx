@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
-import { type ChangeEvent } from "react";
+import { type ChangeEvent } from 'react';
 import styles from './rate-counter.module.css';
-import { useTrainerControlsState } from "@/store/trainer-controls/provider";
-import { setRate } from "@/store/trainer-controls/actions";
+import { useTrainerControlsState } from '@/store/trainer-controls/provider';
+import { setRate } from '@/store/trainer-controls/actions';
 
 export default function RateCounter() {
   const [state, dispatch] = useTrainerControlsState();
@@ -15,11 +15,8 @@ export default function RateCounter() {
 
   return (
     <div className={styles.rateCounter}>
-      Rate: 
-      <input
-        value={rate}
-        disabled={isPlaying}
-        onChange={handleRateChange} />
+      Rate:
+      <input value={rate} disabled={isPlaying} onChange={handleRateChange} />
     </div>
   );
 }

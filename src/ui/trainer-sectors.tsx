@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { TrainerSectorDisplayType, TrainerSectorPosition } from '@/constants';
 import TrainerSector from './trainer-sector';
@@ -12,7 +12,7 @@ const sectorPositions: TrainerSectorPosition[] = [
   TrainerSectorPosition.LEFT_UPPER,
   TrainerSectorPosition.RIGHT_UPPER,
   TrainerSectorPosition.LEFT_LOWER,
-  TrainerSectorPosition.RIGHT_LOWER,
+  TrainerSectorPosition.RIGHT_LOWER
 ];
 
 export default function TrainerSectors() {
@@ -25,11 +25,7 @@ export default function TrainerSectors() {
     setActiveSectorIndex(getRandomInt(sectorPositions.length));
   }, []);
 
-  useInterval(
-    isPlaying,
-    intervalCallback,
-    calculateRateCoeficient(rate) * 2 * 1000,
-  );
+  useInterval(isPlaying, intervalCallback, calculateRateCoeficient(rate) * 2 * 1000);
 
   function getDisplayType(index: number) {
     let displayType = TrainerSectorDisplayType.STATIC;
@@ -42,11 +38,7 @@ export default function TrainerSectors() {
   return (
     <div className={styles.trainerSectors}>
       {sectorPositions.map((position, index) => (
-        <TrainerSector
-          key={position}
-          position={position}
-          displayType={getDisplayType(index)}
-        />
+        <TrainerSector key={position} position={position} displayType={getDisplayType(index)} />
       ))}
     </div>
   );

@@ -8,22 +8,22 @@ import { calculateRateCoeficient } from '@/lib/utils';
 interface Props {
   position: TrainerSectorPosition;
   displayType: TrainerSectorDisplayType;
-};
+}
 
 export default function TrainerSector({ position, displayType }: Props) {
   const [state] = useTrainerControlsState();
   const { rate } = state;
 
-  const style = useMemo(() => ({
-    animationDuration: `${calculateRateCoeficient(rate)}s`,
-  }), [rate]);
+  const style = useMemo(
+    () => ({
+      animationDuration: `${calculateRateCoeficient(rate)}s`
+    }),
+    [rate]
+  );
 
   return (
     <div className={`${styles.trainerSector} ${styles[position]}`}>
-      <FistImage
-       className={`${styles.image} ${styles[displayType]}`}
-       style={style}
-        />
+      <FistImage className={`${styles.image} ${styles[displayType]}`} style={style} />
     </div>
   );
 }

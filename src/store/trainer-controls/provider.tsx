@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import { type ActionDispatch, createContext, useContext, useReducer, type ReactNode } from "react";
-import { initialState, reducer, State } from "./reducer";
-import { Action } from "./actions";
+import { type ActionDispatch, createContext, useContext, useReducer, type ReactNode } from 'react';
+import { initialState, reducer, State } from './reducer';
+import { Action } from './actions';
 
 const TrainerControlsContext = createContext<State | null>(null);
 const TrainerControlsDispatchContext = createContext<ActionDispatch<[action: Action]> | null>(null);
@@ -16,9 +16,7 @@ export function TrainerControlsProvider({ children }: Props) {
 
   return (
     <TrainerControlsContext value={state}>
-      <TrainerControlsDispatchContext value={dispatch}>
-        {children}
-      </TrainerControlsDispatchContext>
+      <TrainerControlsDispatchContext value={dispatch}>{children}</TrainerControlsDispatchContext>
     </TrainerControlsContext>
   );
 }

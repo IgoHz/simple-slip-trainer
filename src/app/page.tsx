@@ -1,5 +1,5 @@
-import styles from "./page.module.css";
-import Trainer from "@/ui/trainer";
+import styles from './page.module.css';
+import Trainer from '@/ui/trainer';
 
 export default function Page() {
   return (
@@ -7,9 +7,7 @@ export default function Page() {
       <main className={styles.main}>
         <Trainer />
       </main>
-      <footer className={styles.footer}>
-        Copyright Ihor T.
-      </footer>
+      <footer className={styles.footer}>Copyright Ihor T.</footer>
     </div>
   );
 }

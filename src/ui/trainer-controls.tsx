@@ -1,6 +1,6 @@
-import RateCounter from "./rate-counter";
+import RateCounter from './rate-counter';
 import styles from './trainer-controls.module.css';
-import StopwatchControl from "./stopwatch";
+import StopwatchControl from './stopwatch';
 
 export default function TrainerControls() {
   return (
