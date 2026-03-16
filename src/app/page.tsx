@@ -1,5 +1,5 @@
 import styles from './page.module.css';
-import Trainer from '@/ui/trainer';
+import Trainer from '@/features/trainer/components/trainer';
 
 export default function Page() {
   return (

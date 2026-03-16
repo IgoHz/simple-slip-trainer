@@ -1,10 +1,10 @@
 'use client';
 
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import styles from './stopwatch.module.css';
 import { useTrainerControlsState } from '@/store/trainer-controls/provider';
 import { setIsPlaying } from '@/store/trainer-controls/actions';
-import { useInterval } from '@/lib/hooks';
+import { useInterval } from '@/hooks/useInterval';
 
 export default function Stopwatch() {
   const [state, dispatch] = useTrainerControlsState();
@@ -12,9 +12,9 @@ export default function Stopwatch() {
 
   const [time, setTime] = useState(0);
 
-  const intervalCallback = useCallback(() => {
+  const intervalCallback = () => {
     setTime((prevTime) => prevTime + 1);
-  }, []);
+  };
 
   useInterval(isPlaying, intervalCallback, 1000);
 
