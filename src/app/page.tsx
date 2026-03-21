@@ -7,7 +7,7 @@ export default function Page() {
       <main className={styles.main}>
         <Trainer />
       </main>
-      <footer className={styles.footer}>Copyright Ihor T.</footer>
+      <footer className={styles.footer}>&#169; Ihor T.</footer>
     </div>
   );
 }

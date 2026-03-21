@@ -21,14 +21,6 @@ export function TrainerControlsProvider({ children }: Props) {
   );
 }
 
-function assertState(state: State | null): asserts state {
-  if (!state) throw new Error('Trainer controls state is not available!');
-}
-
-function assertDispatch(dispatch: ActionDispatch<[action: Action]> | null): asserts dispatch {
-  if (!dispatch) throw new Error('Trainer controls dispatch is not available!');
-}
-
 export function useTrainerControlsState(): [state: State, dispatch: ActionDispatch<[action: Action]>] {
   const state = useContext(TrainerControlsContext);
   const dispatch = useContext(TrainerControlsDispatchContext);
@@ -37,4 +29,12 @@ export function useTrainerControlsState(): [state: State, dispatch: ActionDispat
   assertDispatch(dispatch);
 
   return [state, dispatch];
+}
+
+function assertState(state: State | null): asserts state {
+  if (!state) throw new Error('Trainer controls state is not available!');
+}
+
+function assertDispatch(dispatch: ActionDispatch<[action: Action]> | null): asserts dispatch {
+  if (!dispatch) throw new Error('Trainer controls dispatch is not available!');
 }

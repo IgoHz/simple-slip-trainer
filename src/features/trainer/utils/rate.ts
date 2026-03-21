@@ -1,3 +1,3 @@
-export function calculateRateCoeficient(rate: number): number {
+export function calcRateCoeficient(rate: number): number {
   return 60 / rate;
 }

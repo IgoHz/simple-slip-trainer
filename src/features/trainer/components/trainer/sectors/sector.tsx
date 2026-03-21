@@ -3,7 +3,7 @@ import { SectorDisplayType, SectorPosition } from '@/features/trainer/constants'
 import FistImage from './fist-image';
 import { useTrainerControlsState } from '@/store/trainer-controls/provider';
 import { useMemo } from 'react';
-import { calculateRateCoeficient } from '@/features/trainer/utils/rate';
+import { calcRateCoeficient } from '@/features/trainer/utils/rate';
 
 interface Props {
   position: SectorPosition;
@@ -16,7 +16,7 @@ export default function Sector({ position, displayType }: Props) {
 
   const style = useMemo(
     () => ({
-      animationDuration: `${calculateRateCoeficient(rate)}s`
+      animationDuration: `${calcRateCoeficient(rate)}s`
     }),
     [rate]
   );
