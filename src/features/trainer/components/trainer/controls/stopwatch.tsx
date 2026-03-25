@@ -5,6 +5,7 @@ import styles from './stopwatch.module.css';
 import { useTrainerControlsState } from '@/store/trainer-controls/provider';
 import { setIsPlaying } from '@/store/trainer-controls/actions';
 import { useInterval } from '@/hooks/useInterval';
+import Button from '@/components/button';
 
 export default function Stopwatch() {
   const [state, dispatch] = useTrainerControlsState();
@@ -18,11 +19,6 @@ export default function Stopwatch() {
 
   useInterval(isPlaying, intervalCallback, 1000);
 
-  let label = 'Play';
-  if (isPlaying) {
-    label = 'Pause';
-  }
-
   function handlePlayClick() {
     dispatch(setIsPlaying(!isPlaying));
   }
@@ -34,10 +30,10 @@ export default function Stopwatch() {
   return (
     <div className={styles.stopwatch}>
       <div>{time}</div>
-      <button onClick={handlePlayClick}>{label}</button>
-      <button disabled={isPlaying || !time} onClick={handleResetClick}>
+      <Button onClick={handlePlayClick}>{isPlaying ? 'Pause' : 'Play'}</Button>
+      <Button disabled={isPlaying || !time} onClick={handleResetClick}>
         Reset
-      </button>
+      </Button>
     </div>
   );
 }

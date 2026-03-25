@@ -25,7 +25,7 @@ export function reducer(state: State, action: Action): State {
       };
     }
     default:
-      const exhaustiveCheck: never = action;
-      return exhaustiveCheck;
+      const _exhaustiveCheck: never = action;
+      return _exhaustiveCheck;
   }
 }

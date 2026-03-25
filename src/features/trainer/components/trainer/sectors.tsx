@@ -9,6 +9,7 @@ import { calcRateCoeficient } from '@/features/trainer/utils/rate';
 import { useInterval } from '@/hooks/useInterval';
 import { config as sectorPositionsConfig } from '../../config/sector-positions';
 import { sectorFactory } from '../../utils/sector';
+import Wrapper from '@/components/wrapper';
 
 export default function Sectors() {
   const [state] = useTrainerControlsState();
@@ -23,18 +24,17 @@ export default function Sectors() {
   useInterval(isPlaying, intervalCallback, calcRateCoeficient(rate) * 2 * 1000);
 
   function getDisplayType(index: number) {
-    let displayType = SectorDisplayType.STATIC;
     if (isPlaying && activeSector.index === index) {
-      displayType = SectorDisplayType.ANIMATED;
+      return SectorDisplayType.ANIMATED;
     }
-    return displayType;
+    return SectorDisplayType.STATIC;
   }
 
   return (
-    <div className={styles.sectors}>
+    <Wrapper className={styles.sectors}>
       {sectorPositionsConfig.map((position, index) => (
         <Sector key={position} position={position} displayType={getDisplayType(index)} />
       ))}
-    </div>
+    </Wrapper>
   );
 }

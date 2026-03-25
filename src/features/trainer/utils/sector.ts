@@ -46,6 +46,7 @@ class SectorManager implements ISectorManager {
     return nextSector;
   }
 
+  // TODO: adjust method to exclude previous value from possible results
   private getRandomIndex() {
     return Math.floor(Math.random() * this._sectorsAmount);
   }

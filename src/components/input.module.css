@@ -1,0 +1,12 @@
+.input {
+  font-family: var(--font-silkscreen), Arial, sans-serif;
+
+  padding: 4px;
+
+  color: var(--theme-color-text);
+  background: var(--theme-color-background);
+
+  border: 2px solid var(--theme-color-border);
+
+  /* TODO: add focus state */
+}

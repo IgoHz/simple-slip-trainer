@@ -2,5 +2,11 @@
   display: flex;
   justify-content: center;
   gap: 16px;
+
   z-index: 1000;
+
+  label {
+    flex-grow: 1;
+    align-content: center;
+  }
 }

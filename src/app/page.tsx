@@ -1,13 +1,16 @@
 import styles from './page.module.css';
 import Trainer from '@/features/trainer/components/trainer';
+import Copyright from '@/components/copyright';
 
 export default function Page() {
   return (
     <div className={styles.page}>
-      <main className={styles.main}>
+      <main>
         <Trainer />
       </main>
-      <footer className={styles.footer}>&#169; Ihor T.</footer>
+      <footer>
+        <Copyright />
+      </footer>
     </div>
   );
 }
