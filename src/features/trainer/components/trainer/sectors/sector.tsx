@@ -1,5 +1,5 @@
 import styles from './sector.module.css';
-import { SectorDisplayType, SectorPosition } from '@/features/trainer/constants';
+import { SectorDisplayType, SectorPosition } from '@/features/trainer/config/sector';
 import FistImage from './fist-image';
 import { useTrainerControlsState } from '@/store/trainer-controls/provider';
 import { useMemo } from 'react';

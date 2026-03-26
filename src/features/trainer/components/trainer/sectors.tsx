@@ -17,7 +17,7 @@ export default function Sectors() {
   const [activeSector, setActiveSector] = useState(sectorFactory(0, 0));
 
   const intervalCallback = () => {
-    setActiveSector((sector) => sectorFactory(sector.repeatCount, sector.index));
+    setActiveSector((sector) => sectorFactory(sector.index, sector.repeatCount));
   };
 
   useInterval(isPlaying, intervalCallback, calcRateCoeficient(rate) * 2 * 1000);
