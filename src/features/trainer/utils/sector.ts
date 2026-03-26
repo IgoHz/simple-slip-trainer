@@ -5,8 +5,15 @@ interface ISectorManager {
   readonly repeatCount: number;
 }
 
-export function sectorFactory(prevIndex: number, prevRepeatCount: number): ISectorManager {
-  return new SectorManager(sectorPositionsConfig.length, prevIndex, prevRepeatCount);
+export function sectorFactory(
+  prevIndex: number,
+  prevRepeatCount: number
+): ISectorManager {
+  return new SectorManager(
+    sectorPositionsConfig.length,
+    prevIndex,
+    prevRepeatCount
+  );
 }
 
 class SectorManager implements ISectorManager {
@@ -16,7 +23,11 @@ class SectorManager implements ISectorManager {
   private _index: number;
   private _repeatCount: number;
 
-  constructor(sectorsAmount: number, prevIndex: number, prevRepeatCount: number) {
+  constructor(
+    sectorsAmount: number,
+    prevIndex: number,
+    prevRepeatCount: number
+  ) {
     this._sectorsAmount = sectorsAmount;
     this._index = this.calcNextIndex(prevIndex, prevRepeatCount);
     this._repeatCount = this.calcNextRepeatCount(prevIndex, prevRepeatCount);
@@ -31,7 +42,8 @@ class SectorManager implements ISectorManager {
   }
 
   private calcNextIndex(prevIndex: number, prevRepeatCount: number) {
-    const excludedIndex = prevRepeatCount === this.MAX_REPEAT_COUNT ? prevIndex : undefined;
+    const excludedIndex =
+      prevRepeatCount === this.MAX_REPEAT_COUNT ? prevIndex : undefined;
     const nextIndex = this.getRandomIndexWithExclusion(excludedIndex);
     return nextIndex;
   }

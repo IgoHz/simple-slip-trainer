@@ -4,3 +4,4 @@ coverage
 .next
 node_modules
 *.json
+pnpm-lock.yaml

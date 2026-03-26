@@ -1,5 +1,8 @@
 import styles from './sector.module.css';
-import { SectorDisplayType, SectorPosition } from '@/features/trainer/config/sector';
+import {
+  SectorDisplayType,
+  SectorPosition
+} from '@/features/trainer/config/sector';
 import FistImage from './fist-image';
 import { useTrainerControlsState } from '@/store/trainer-controls/provider';
 import { useMemo } from 'react';
@@ -23,7 +26,10 @@ export default function Sector({ position, displayType }: Props) {
 
   return (
     <div className={`${styles.sector} ${styles[position]}`}>
-      <FistImage className={`${styles.image} ${styles[displayType]}`} style={style} />
+      <FistImage
+        className={`${styles.image} ${styles[displayType]}`}
+        style={style}
+      />
     </div>
   );
 }

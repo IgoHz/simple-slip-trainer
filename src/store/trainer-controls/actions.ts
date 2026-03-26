@@ -10,7 +10,9 @@ export enum ActionType {
   SET_IS_PLAYING = 'set-is-playing'
 }
 
-export type Action = GenericAction<ActionType.SET_RATE, 'rate'> | GenericAction<ActionType.SET_IS_PLAYING, 'isPlaying'>;
+export type Action =
+  | GenericAction<ActionType.SET_RATE, 'rate'>
+  | GenericAction<ActionType.SET_IS_PLAYING, 'isPlaying'>;
 
 export function setRate(rate: State['rate']): Action {
   return {
