@@ -1,3 +1,4 @@
+import { RATE_COUNTER_MIN_VALUE } from '@/features/trainer/config/rate';
 import { Action, ActionType } from './actions';
 
 export interface State {
@@ -6,7 +7,7 @@ export interface State {
 }
 
 export const initialState: State = {
-  rate: 60,
+  rate: RATE_COUNTER_MIN_VALUE,
   isPlaying: false
 };
 

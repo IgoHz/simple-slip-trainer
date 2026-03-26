@@ -1,12 +1,16 @@
 .input {
   font-family: var(--font-silkscreen), Arial, sans-serif;
 
-  padding: 4px;
+  padding: var(--padding-normal);
 
   color: var(--theme-color-text);
   background: var(--theme-color-background);
 
-  border: 2px solid var(--theme-color-border);
+  border: var(--border-size) solid var(--theme-color-border);
 
-  /* TODO: add focus state */
+  transition: border-color 0.2s ease-in-out;
+
+  &:focus {
+    outline: 1px solid var(--theme-color-border);
+  }
 }

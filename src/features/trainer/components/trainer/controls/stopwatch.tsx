@@ -13,11 +13,11 @@ export default function Stopwatch() {
 
   const [time, setTime] = useState(0);
 
-  const intervalCallback = () => {
+  const handleInterval = () => {
     setTime((prevTime) => prevTime + 1);
   };
 
-  useInterval(isPlaying, intervalCallback, 1000);
+  useInterval(isPlaying, handleInterval, 1000);
 
   function handlePlayClick() {
     dispatch(setIsPlaying(!isPlaying));
@@ -29,6 +29,7 @@ export default function Stopwatch() {
 
   return (
     <div className={styles.stopwatch}>
+      <label>Time:</label>
       <div>{time}</div>
       <Button onClick={handlePlayClick}>{isPlaying ? 'Pause' : 'Play'}</Button>
       <Button disabled={isPlaying || !time} onClick={handleResetClick}>

@@ -3,8 +3,8 @@
   flex-wrap: wrap;
   flex-shrink: 1;
 
-  margin: 0 4px;
+  margin: 0 var(--padding-normal);
 
-  border: 2px solid var(--theme-color-border);
+  border: var(--border-size) solid var(--theme-color-border);
   background-color: var(--theme-color-foreground);
 }

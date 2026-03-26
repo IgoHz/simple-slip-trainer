@@ -1,4 +1,4 @@
-import { config as sectorPositionsConfig } from '../config/sector-positions';
+import { config as sectorPositionsConfig } from '../config/sector';
 
 export function sectorFactory(repeatCount: number, prevSector: number) {
   return new SectorManager(sectorPositionsConfig.length, repeatCount, prevSector);

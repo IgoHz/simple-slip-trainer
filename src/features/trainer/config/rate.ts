@@ -1,0 +1,3 @@
+export const RATE_COUNTER_MIN_VALUE = 60;
+
+export const RATE_COUNTER_AMPLIFIER_VALUE = 5;

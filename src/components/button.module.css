@@ -1,12 +1,36 @@
 .button {
   font-family: var(--font-silkscreen), Arial, sans-serif;
 
-  padding: 4px;
+  padding: var(--padding-normal);
 
   color: var(--theme-color-text);
   background: var(--theme-color-background);
 
-  border: 2px solid var(--theme-color-border);
+  border: var(--border-size) solid var(--theme-color-border);
 
-  /* TODO: add hover and active states */
+  transition: border-color 0.2s ease-in-out;
+
+  &:hover {
+    position: relative;
+    bottom: 1px;
+    right: 1px;
+  }
+
+  &:active {
+    position: revert;
+    border-color: var(--theme-color-foreground);
+  }
+
+  &:focus-visible {
+    outline: 1px solid var(--theme-color-border);
+  }
+
+  &:disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
+
+    &:hover {
+      position: revert;
+    }
+  }
 }
