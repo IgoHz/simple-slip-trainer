@@ -10,8 +10,8 @@ import {
 import { initialState, reducer, State } from './reducer';
 import { Action } from './actions';
 
-const TrainerControlsContext = createContext<State | null>(null);
-const TrainerControlsDispatchContext = createContext<ActionDispatch<
+const ControlsContext = createContext<State | null>(null);
+const ControlsDispatchContext = createContext<ActionDispatch<
   [action: Action]
 > | null>(null);
 
@@ -19,24 +19,24 @@ interface Props {
   children: ReactNode;
 }
 
-export function TrainerControlsProvider({ children }: Props) {
+export function ControlsProvider({ children }: Props) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <TrainerControlsContext value={state}>
-      <TrainerControlsDispatchContext value={dispatch}>
+    <ControlsContext value={state}>
+      <ControlsDispatchContext value={dispatch}>
         {children}
-      </TrainerControlsDispatchContext>
-    </TrainerControlsContext>
+      </ControlsDispatchContext>
+    </ControlsContext>
   );
 }
 
-export function useTrainerControlsState(): [
+export function useControlsState(): [
   state: State,
   dispatch: ActionDispatch<[action: Action]>
 ] {
-  const state = useContext(TrainerControlsContext);
-  const dispatch = useContext(TrainerControlsDispatchContext);
+  const state = useContext(ControlsContext);
+  const dispatch = useContext(ControlsDispatchContext);
 
   assertState(state);
   assertDispatch(dispatch);
@@ -45,11 +45,11 @@ export function useTrainerControlsState(): [
 }
 
 function assertState(state: State | null): asserts state {
-  if (!state) throw new Error('Trainer controls state is not available!');
+  if (!state) throw new Error('Controls state is not available!');
 }
 
 function assertDispatch(
   dispatch: ActionDispatch<[action: Action]> | null
 ): asserts dispatch {
-  if (!dispatch) throw new Error('Trainer controls dispatch is not available!');
+  if (!dispatch) throw new Error('Controls dispatch is not available!');
 }

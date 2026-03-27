@@ -1,5 +1,7 @@
 .button {
   font-family: var(--font-silkscreen), Arial, sans-serif;
+  font-size: 0.875rem;
+  line-height: 1rem;
 
   padding: var(--padding-normal);
 
@@ -11,14 +13,17 @@
   transition: border-color 0.2s ease-in-out;
 
   &:hover {
-    position: relative;
-    bottom: 1px;
-    right: 1px;
+    transform: translate(-1px, -1px);
+    box-shadow: 1px 1px 0 var(--theme-color-border);
   }
 
   &:active {
-    position: revert;
     border-color: var(--theme-color-foreground);
+
+    &:hover {
+      transform: translate(0);
+      box-shadow: revert;
+    }
   }
 
   &:focus-visible {
@@ -30,7 +35,11 @@
     cursor: not-allowed;
 
     &:hover {
-      position: revert;
+      box-shadow: revert;
     }
+  }
+
+  svg {
+    display: block;
   }
 }

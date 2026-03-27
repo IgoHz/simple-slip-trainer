@@ -1,5 +1,9 @@
 .input {
   font-family: var(--font-silkscreen), Arial, sans-serif;
+  font-size: 0.875rem;
+  line-height: 1rem;
+
+  max-height: 1.75rem;
 
   padding: var(--padding-normal);
 

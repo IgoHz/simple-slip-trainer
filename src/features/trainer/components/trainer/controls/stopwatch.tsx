@@ -2,13 +2,17 @@
 
 import { useState } from 'react';
 import styles from './stopwatch.module.css';
-import { useTrainerControlsState } from '@/store/trainer-controls/provider';
-import { setIsPlaying } from '@/store/trainer-controls/actions';
+import { useControlsState } from '@/features/trainer/store/controls/provider';
+import { setIsPlaying } from '@/features/trainer/store/controls/actions';
 import { useInterval } from '@/hooks/useInterval';
 import Button from '@/components/button';
+import PlayIcon from './stopwatch/play-icon';
+import PauseIcon from './stopwatch/pause-icon';
+import StopIcon from './stopwatch/stop-icon';
+import { formatSecondsToTime } from '@/utils/time';
 
 export default function Stopwatch() {
-  const [state, dispatch] = useTrainerControlsState();
+  const [state, dispatch] = useControlsState();
   const { isPlaying } = state;
 
   const [time, setTime] = useState(0);
@@ -30,10 +34,12 @@ export default function Stopwatch() {
   return (
     <div className={styles.stopwatch}>
       <label>Time:</label>
-      <div>{time}</div>
-      <Button onClick={handlePlayClick}>{isPlaying ? 'Pause' : 'Play'}</Button>
+      <div className={styles.time}>{formatSecondsToTime(time)}</div>
+      <Button onClick={handlePlayClick}>
+        {isPlaying ? <PauseIcon /> : <PlayIcon />}
+      </Button>
       <Button disabled={isPlaying || !time} onClick={handleResetClick}>
-        Reset
+        <StopIcon />
       </Button>
     </div>
   );

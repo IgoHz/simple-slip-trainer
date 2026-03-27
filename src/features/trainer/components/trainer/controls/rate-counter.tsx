@@ -2,8 +2,8 @@
 
 import { ChangeEvent } from 'react';
 import styles from './rate-counter.module.css';
-import { useTrainerControlsState } from '@/store/trainer-controls/provider';
-import { setRate } from '@/store/trainer-controls/actions';
+import { useControlsState } from '@/features/trainer/store/controls/provider';
+import { setRate } from '@/features/trainer/store/controls/actions';
 import Input from '@/components/input';
 import Button from '@/components/button';
 import {
@@ -12,7 +12,7 @@ import {
 } from '@/features/trainer/config/rate';
 
 export default function RateCounter() {
-  const [state, dispatch] = useTrainerControlsState();
+  const [state, dispatch] = useControlsState();
   const { rate, isPlaying } = state;
 
   function handleRateInputChange(event: ChangeEvent<HTMLInputElement>) {

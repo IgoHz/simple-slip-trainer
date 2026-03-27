@@ -2,7 +2,7 @@
 
 import Sector from './sectors/sector';
 import styles from './sectors.module.css';
-import { useTrainerControlsState } from '@/store/trainer-controls/provider';
+import { useControlsState } from '@/features/trainer/store/controls/provider';
 import { useState } from 'react';
 import { calcRateCoeficient } from '@/features/trainer/utils/rate';
 import { useInterval } from '@/hooks/useInterval';
@@ -14,7 +14,7 @@ import { sectorFactory } from '../../utils/sector';
 import Wrapper from '@/components/wrapper';
 
 export default function Sectors() {
-  const [state] = useTrainerControlsState();
+  const [state] = useControlsState();
   const { rate, isPlaying } = state;
 
   const [activeSector, setActiveSector] = useState(sectorFactory(0, 0));

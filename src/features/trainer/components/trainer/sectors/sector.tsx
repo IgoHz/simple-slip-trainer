@@ -4,7 +4,7 @@ import {
   SectorPosition
 } from '@/features/trainer/config/sector';
 import FistImage from './fist-image';
-import { useTrainerControlsState } from '@/store/trainer-controls/provider';
+import { useControlsState } from '@/features/trainer/store/controls/provider';
 import { useMemo } from 'react';
 import { calcRateCoeficient } from '@/features/trainer/utils/rate';
 
@@ -14,7 +14,7 @@ interface Props {
 }
 
 export default function Sector({ position, displayType }: Props) {
-  const [state] = useTrainerControlsState();
+  const [state] = useControlsState();
   const { rate } = state;
 
   const style = useMemo(
