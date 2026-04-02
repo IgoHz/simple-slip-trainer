@@ -1,12 +1,20 @@
 .controls {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   gap: 16px;
-
   z-index: 1000;
 
-  label {
-    flex-grow: 1;
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+
+  & > label {
     align-content: center;
+    text-align: center;
+
+    @media (min-width: 768px) {
+      flex-grow: 1;
+      text-align: revert;
+    }
   }
 }

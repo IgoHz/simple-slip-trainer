@@ -1,8 +1,13 @@
 .rateCounter {
   display: flex;
   flex-wrap: nowrap;
+  justify-content: center;
   align-items: center;
   gap: var(--padding-normal);
+
+  @media (min-width: 768px) {
+    justify-content: revert;
+  }
 
   input {
     max-width: 4rem;
