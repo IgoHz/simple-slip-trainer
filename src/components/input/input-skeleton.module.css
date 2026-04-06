@@ -1,25 +1,20 @@
-.input {
+.inputSkeleton {
   font-family: var(--font-silkscreen), Arial, sans-serif;
   font-size: 0.875rem;
   line-height: 1rem;
 
   max-height: 1.75rem;
+  width: 4rem;
 
   padding: var(--padding-normal);
+
+  text-align: center;
 
   color: var(--theme-color-text);
   background: var(--theme-color-background);
 
   border: var(--border-size) solid var(--theme-color-border);
 
-  transition: border-color 0.2s ease-in-out;
-
-  &:focus {
-    outline: 1px solid var(--theme-color-border);
-  }
-
-  &:disabled {
-    opacity: 0.8;
-    cursor: not-allowed;
-  }
+  opacity: 0.8;
+  cursor: not-allowed;
 }

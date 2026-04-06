@@ -2,18 +2,22 @@
 
 import { useState } from 'react';
 import styles from './stopwatch.module.css';
-import { useControlsState } from '@/features/trainer/store/controls/provider';
-import { setIsPlaying } from '@/features/trainer/store/controls/actions';
 import { useInterval } from '@/hooks/useInterval';
 import Button from '@/components/button';
 import PlayIcon from './stopwatch/play-icon';
 import PauseIcon from './stopwatch/pause-icon';
 import StopIcon from './stopwatch/stop-icon';
 import { formatSecondsToTime } from '@/utils/time';
+import {
+  isPlayingSelector,
+  setIsPlayingSelector,
+  useControlsStore
+} from '@/features/trainer/store/controls';
 
 export default function Stopwatch() {
-  const [state, dispatch] = useControlsState();
-  const { isPlaying } = state;
+  const isPlaying = useControlsStore(isPlayingSelector);
+
+  const setIsPlaying = useControlsStore(setIsPlayingSelector);
 
   const [time, setTime] = useState(0);
 
@@ -24,7 +28,7 @@ export default function Stopwatch() {
   useInterval(isPlaying, handleInterval, 1000);
 
   function handlePlayClick() {
-    dispatch(setIsPlaying(!isPlaying));
+    setIsPlaying(!isPlaying);
   }
 
   function handleResetClick() {
