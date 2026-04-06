@@ -1,18 +1,16 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import styles from './stopwatch.module.css';
 import { useInterval } from '@/hooks/useInterval';
-import Button from '@/components/button';
-import PlayIcon from './stopwatch/play-icon';
-import PauseIcon from './stopwatch/pause-icon';
-import StopIcon from './stopwatch/stop-icon';
 import { formatSecondsToTime } from '@/utils/time';
 import {
   isPlayingSelector,
   setIsPlayingSelector,
   useControlsStore
 } from '@/features/trainer/store/controls';
+import PlayPauseButton from './stopwatch/play-pause-button';
+import StopButton from './stopwatch/stop-button';
 
 export default function Stopwatch() {
   const isPlaying = useControlsStore(isPlayingSelector);
@@ -27,24 +25,20 @@ export default function Stopwatch() {
 
   useInterval(isPlaying, handleInterval, 1000);
 
-  function handlePlayClick() {
+  const handlePlayPauseClick = useCallback(() => {
     setIsPlaying(!isPlaying);
-  }
+  }, [isPlaying, setIsPlaying]);
 
-  function handleResetClick() {
+  const handleResetClick = useCallback(() => {
     setTime(0);
-  }
+  }, []);
 
   return (
     <div className={styles.stopwatch}>
       <label>Time:</label>
       <div className={styles.time}>{formatSecondsToTime(time)}</div>
-      <Button onClick={handlePlayClick}>
-        {isPlaying ? <PauseIcon /> : <PlayIcon />}
-      </Button>
-      <Button disabled={isPlaying || !time} onClick={handleResetClick}>
-        <StopIcon />
-      </Button>
+      <PlayPauseButton isPlaying={isPlaying} onClick={handlePlayPauseClick} />
+      <StopButton disabled={isPlaying || !time} onClick={handleResetClick} />
     </div>
   );
 }

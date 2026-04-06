@@ -12,22 +12,24 @@
 
   transition: border-color 0.2s ease-in-out;
 
+  &:focus-visible {
+    outline: 1px solid var(--theme-color-border);
+  }
+
   &:hover {
     transform: translate(-1px, -1px);
     box-shadow: 1px 1px 0 var(--theme-color-border);
   }
 
   &:active {
-    border-color: var(--theme-color-foreground);
+    &:not(:disabled) {
+      border-color: var(--theme-color-foreground);
+    }
 
     &:hover {
       transform: translate(0);
       box-shadow: revert;
     }
-  }
-
-  &:focus-visible {
-    outline: 1px solid var(--theme-color-border);
   }
 
   &:disabled {
@@ -36,6 +38,7 @@
 
     &:hover {
       box-shadow: revert;
+      transform: revert;
     }
   }
 
