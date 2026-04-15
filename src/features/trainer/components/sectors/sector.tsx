@@ -30,7 +30,7 @@ export default function Sector({ position, displayType }: Props) {
   return (
     <div className={`${styles.sector} ${styles[position]}`}>
       <FistImage
-        className={`${styles.image} ${styles[displayType]}`}
+        className={`${styles.image} ${styles[displayType] ?? ''}`}
         style={style}
       />
     </div>

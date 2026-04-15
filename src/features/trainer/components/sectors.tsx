@@ -32,11 +32,11 @@ export default function Sectors() {
 
   useInterval(isPlaying, intervalCallback, calcRateCoeficient(rate) * 2 * 1000);
 
-  function getDisplayType(index: number) {
+  function getDisplayType(index: number): SectorDisplayType {
     if (isPlaying && activeSector.index === index) {
       return SectorDisplayType.ANIMATED;
     }
-    return SectorDisplayType.STATIC;
+    return SectorDisplayType.DEFAULT;
   }
 
   return (

@@ -6,7 +6,7 @@ export enum SectorPosition {
 }
 
 export enum SectorDisplayType {
-  STATIC = 'static',
+  DEFAULT = 'default',
   ANIMATED = 'animated'
 }
 

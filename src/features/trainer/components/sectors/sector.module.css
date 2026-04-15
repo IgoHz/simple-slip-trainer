@@ -1,30 +1,37 @@
 @keyframes punch-left {
-  0% {
-    opacity: 0;
-  }
   100% {
-    left: 65%;
-    transform: translate(-50%, -50%) rotateY(180deg) rotate(-15deg);
+    transform: translate(5%, 20%) rotateY(180deg) rotate(-15deg);
     opacity: 1;
+  }
+}
+
+@media (min-width: 768px) {
+  @keyframes punch-left {
+    100% {
+      transform: translate(75%, 50%) rotateY(180deg) rotate(-15deg);
+      opacity: 1;
+    }
   }
 }
 
 @keyframes punch-right {
-  0% {
-    opacity: 0;
-  }
   100% {
-    left: 35%;
-    transform: translate(-50%, -50%) rotate(-15deg);
+    transform: translate(20%, 20%) rotate(-15deg);
     opacity: 1;
   }
 }
 
-.sector {
-  position: relative;
+@media (min-width: 768px) {
+  @keyframes punch-right {
+    100% {
+      transform: translate(25%, 50%) rotate(-15deg);
+      opacity: 1;
+    }
+  }
+}
 
+.sector {
   flex-basis: 50%;
-  box-sizing: border-box;
 }
 
 .leftUpper,
@@ -48,22 +55,21 @@
 }
 
 .image {
-  position: absolute;
-  top: 50%;
-  left: 50%;
+  width: 80%;
+  height: 80%;
 
-  width: 50%;
-  height: 50%;
+  opacity: 0;
+
+  @media (min-width: 768px) {
+    width: 50%;
+    height: 50%;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
   .image {
     filter: brightness(70%);
   }
-}
-
-.static {
-  opacity: 0;
 }
 
 .animated {
@@ -74,7 +80,11 @@
 
 :is(.leftUpper, .leftLower) {
   .image {
-    transform: translate(-50%, -50%) rotateY(180deg) rotate(85deg);
+    transform: translate(5%, 20%) rotateY(180deg) rotate(85deg);
+
+    @media (min-width: 768px) {
+      transform: translate(50%, 50%) rotateY(180deg) rotate(85deg);
+    }
   }
 
   .animated {
@@ -84,7 +94,11 @@
 
 :is(.rightUpper, .rightLower) {
   .image {
-    transform: translate(-50%, -50%) rotate(85deg);
+    transform: translate(20%, 20%) rotate(85deg);
+
+    @media (min-width: 768px) {
+      transform: translate(50%, 50%) rotate(85deg);
+    }
   }
 
   .animated {
