@@ -12,7 +12,11 @@ import {
 import PlayPauseButton from './stopwatch/play-pause-button';
 import StopButton from './stopwatch/stop-button';
 
-export default function Stopwatch() {
+interface Props {
+  className?: string;
+}
+
+export default function Stopwatch({ className }: Props) {
   const isPlaying = useControlsStore(isPlayingSelector);
 
   const setIsPlaying = useControlsStore(setIsPlayingSelector);
@@ -34,7 +38,7 @@ export default function Stopwatch() {
   }, []);
 
   return (
-    <div className={styles.stopwatch}>
+    <div className={`${styles.stopwatch} ${className ?? ''}`}>
       <label>Time:</label>
       <div className={styles.time}>{formatSecondsToTime(time)}</div>
       <PlayPauseButton isPlaying={isPlaying} onClick={handlePlayPauseClick} />

@@ -1,0 +1,24 @@
+.rateCounter {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--padding-normal);
+
+  & > label {
+    display: none;
+
+    @media (min-width: 768px) {
+      display: revert;
+    }
+  }
+
+  @media (min-width: 768px) {
+    justify-content: revert;
+  }
+
+  input {
+    max-width: 4rem;
+    text-align: center;
+  }
+}

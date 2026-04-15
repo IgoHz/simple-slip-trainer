@@ -1,8 +1,13 @@
 .page {
   display: grid;
-  grid-template-rows: 1fr auto;
+  grid-template-rows: auto 1fr auto;
 
   min-height: 100vh;
 
   border: var(--border-size) solid var(--theme-color-border);
+
+  .main {
+    display: grid;
+    grid-template-rows: subgrid;
+  }
 }

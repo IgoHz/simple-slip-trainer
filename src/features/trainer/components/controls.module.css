@@ -1,0 +1,68 @@
+.controls {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas:
+    'button label stopwatch'
+    'rate-counter rate-counter rate-counter';
+  gap: 8px;
+
+  container-type: inline-size;
+
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr auto auto;
+    grid-template-areas: revert;
+    gap: 16px;
+  }
+
+  &:not(.expanded) {
+    grid-template-areas: 'button label stopwatch';
+
+    .rateCounter {
+      display: none;
+
+      @media (min-width: 768px) {
+        display: flex;
+      }
+    }
+  }
+
+  .expandButton {
+    @media (min-width: 768px) {
+      display: none;
+    }
+  }
+
+  .mobileLabel,
+  .desktopLabel {
+    align-content: center;
+  }
+
+  .mobileLabel {
+    @media (min-width: 768px) {
+      display: none;
+    }
+  }
+
+  .desktopLabel {
+    display: none;
+
+    @media (min-width: 768px) {
+      display: revert;
+    }
+  }
+
+  .rateCounter {
+    grid-area: rate-counter;
+  }
+
+  .stopwatch {
+    grid-area: stopwatch;
+  }
+
+  .rateCounter,
+  .stopwatch {
+    @media (min-width: 768px) {
+      grid-area: revert;
+    }
+  }
+}

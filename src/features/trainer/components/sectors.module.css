@@ -1,7 +1,8 @@
 .sectors {
+  grid-row: span 1;
+
   display: flex;
   flex-wrap: wrap;
-  flex-shrink: 1;
 
   margin: 0 var(--padding-normal);
 

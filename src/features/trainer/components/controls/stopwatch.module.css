@@ -1,6 +1,5 @@
-.rateCounter {
+.stopwatch {
   display: flex;
-  flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
   gap: var(--padding-normal);
@@ -9,8 +8,16 @@
     justify-content: revert;
   }
 
-  input {
-    max-width: 4rem;
-    text-align: center;
+  & > label {
+    display: none;
+
+    @media (min-width: 768px) {
+      display: revert;
+    }
+  }
+
+  .time {
+    display: inline;
+    width: 3.375rem;
   }
 }

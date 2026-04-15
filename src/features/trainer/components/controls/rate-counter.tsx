@@ -17,7 +17,11 @@ import {
 import useStoreAsync from '@/hooks/useStore';
 import { assertValue } from '@/utils/assert';
 
-export default function RateCounter() {
+interface Props {
+  className?: string;
+}
+
+export default function RateCounter({ className }: Props) {
   const rate = useStoreAsync(useControlsStore, rateSelector);
   const isPlaying = useControlsStore(isPlayingSelector);
 
@@ -53,7 +57,7 @@ export default function RateCounter() {
   }, [rate, setRate]);
 
   return (
-    <div className={styles.rateCounter}>
+    <div className={`${styles.rateCounter} ${className ?? ''}`}>
       <label>Rate:</label>
       <Button
         label={`-${RATE_COUNTER_AMPLIFIER_VALUE}`}

@@ -1,12 +1,16 @@
 import styles from './page.module.css';
-import Trainer from '@/features/trainer/components/trainer';
 import Copyright from '@/components/copyright';
+import Controls from '@/features/trainer/components/controls';
+import Sectors from '@/features/trainer/components/sectors';
 
 export default function Page() {
   return (
     <div className={styles.page}>
-      <main>
-        <Trainer />
+      <header>
+        <Controls />
+      </header>
+      <main className={styles.main}>
+        <Sectors />
       </main>
       <footer>
         <Copyright />

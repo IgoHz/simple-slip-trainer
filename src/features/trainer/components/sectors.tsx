@@ -8,14 +8,14 @@ import { useInterval } from '@/hooks/useInterval';
 import {
   SectorDisplayType,
   config as sectorPositionsConfig
-} from '../../config/sector';
-import { sectorFactory } from '../../utils/sector';
+} from '../config/sector';
+import { sectorFactory } from '../utils/sector';
 import Wrapper from '@/components/wrapper';
 import {
   isPlayingSelector,
   rateSelector,
   useControlsStore
-} from '../../store/controls';
+} from '../store/controls';
 import useStoreAsync from '@/hooks/useStore';
 
 export default function Sectors() {
