@@ -1,7 +1,6 @@
 import styles from './page.module.css';
 import Copyright from '@/components/copyright';
-import Controls from '@/features/trainer/components/controls';
-import Sectors from '@/features/trainer/components/sectors';
+import { Controls, Sectors } from '@/features/trainer';
 
 export default function Page() {
   return (
