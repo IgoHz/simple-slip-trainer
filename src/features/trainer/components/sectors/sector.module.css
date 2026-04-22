@@ -1,36 +1,28 @@
 @keyframes punch-left {
-  100% {
-    transform: translate(5%, 20%) rotateY(180deg) rotate(-15deg);
-    opacity: 1;
+  0% {
+    transform: translate(-50%, -50%) rotateY(180deg) rotateZ(85deg);
+    opacity: 0;
   }
-}
-
-@media (min-width: 768px) {
-  @keyframes punch-left {
-    100% {
-      transform: translate(75%, 50%) rotateY(180deg) rotate(-15deg);
-      opacity: 1;
-    }
+  100% {
+    transform: translate(-50%, -50%) rotateY(180deg) rotateZ(-15deg);
+    opacity: 1;
   }
 }
 
 @keyframes punch-right {
+  0% {
+    transform: translate(-50%, -50%) rotateZ(85deg);
+    opacity: 0;
+  }
   100% {
-    transform: translate(20%, 20%) rotate(-15deg);
+    transform: translate(-50%, -50%) rotateZ(-15deg);
     opacity: 1;
   }
 }
 
-@media (min-width: 768px) {
-  @keyframes punch-right {
-    100% {
-      transform: translate(25%, 50%) rotate(-15deg);
-      opacity: 1;
-    }
-  }
-}
-
 .sector {
+  position: relative;
+
   flex-basis: 50%;
 }
 
@@ -55,14 +47,18 @@
 }
 
 .image {
-  width: 80%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: inherit;
   height: 80%;
 
   opacity: 0;
 
-  @media (min-width: 768px) {
-    width: 50%;
-    height: 50%;
+  @media (orientation: portrait) {
+    width: 80%;
+    height: inherit;
   }
 }
 
@@ -79,28 +75,12 @@
 }
 
 :is(.leftUpper, .leftLower) {
-  .image {
-    transform: translate(5%, 20%) rotateY(180deg) rotate(85deg);
-
-    @media (min-width: 768px) {
-      transform: translate(50%, 50%) rotateY(180deg) rotate(85deg);
-    }
-  }
-
   .animated {
     animation-name: punch-left;
   }
 }
 
 :is(.rightUpper, .rightLower) {
-  .image {
-    transform: translate(20%, 20%) rotate(85deg);
-
-    @media (min-width: 768px) {
-      transform: translate(50%, 50%) rotate(85deg);
-    }
-  }
-
   .animated {
     animation-name: punch-right;
   }

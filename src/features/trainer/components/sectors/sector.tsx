@@ -3,7 +3,7 @@ import {
   SectorDisplayType,
   SectorPosition
 } from '@/features/trainer/config/sector';
-import FistImage from './fist-image';
+import FistImage from './sector/fist-image';
 import { useMemo } from 'react';
 import { calcRateCoeficient } from '@/features/trainer/utils/rate';
 import {

@@ -8,7 +8,7 @@ import { useCallback, useState } from 'react';
 import ExpandButton from './controls/expand-button';
 
 export default function Controls() {
-  const [isExpanded, setIsExpanded] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const handleExpandClick = useCallback(() => {
     setIsExpanded((prevIsExpanded) => !prevIsExpanded);

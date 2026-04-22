@@ -13,8 +13,8 @@ function FistImage({ className, style }: Props) {
       style={style}
       src="/fist.svg"
       alt="Fist image"
-      width={100}
-      height={100}
+      width={1}
+      height={1}
       loading="eager"
     />
   );
