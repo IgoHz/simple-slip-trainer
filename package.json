@@ -11,7 +11,8 @@
     "type-check": "tsc --noEmit",
     "format": "prettier . --write",
     "format-check": "prettier . --check",
-    "validate": "pnpm build && pnpm lint && pnpm type-check && pnpm format-check"
+    "test": "jest --coverage",
+    "validate": "pnpm build && pnpm lint && pnpm type-check && pnpm format-check && pnpm test"
   },
   "dependencies": {
     "next": "16.1.6",
@@ -20,6 +21,10 @@
     "zustand": "^5.0.12"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/jest": "^30.0.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
@@ -27,6 +32,8 @@
     "eslint-config-next": "16.1.6",
     "eslint-config-prettier": "^10.1.8",
     "husky": "^9.1.7",
+    "jest": "^30.3.0",
+    "jest-environment-jsdom": "^30.3.0",
     "prettier": "^3.8.1",
     "typescript": "^5"
   }

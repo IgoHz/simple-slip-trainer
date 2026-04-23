@@ -4,7 +4,7 @@ import LoadingIcon from './input-skeleton/loading-icon';
 
 function InputSkeleton() {
   return (
-    <div className={styles.inputSkeleton}>
+    <div className={styles.inputSkeleton} data-testid="input-skeleton">
       <LoadingIcon />
     </div>
   );
