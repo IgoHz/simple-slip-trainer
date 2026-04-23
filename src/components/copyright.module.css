@@ -1,4 +1,31 @@
 .copyright {
   display: flex;
   justify-content: center;
+
+  font-size: 0.875rem;
+
+  @media (min-width: 768px) {
+    font-size: inherit;
+  }
+
+  .link {
+    color: var(--theme-color-text);
+    opacity: 0.8;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.2s ease;
+
+    &:hover {
+      opacity: 1;
+
+      .suffix {
+        opacity: 1;
+      }
+    }
+
+    .suffix {
+      opacity: 0.5;
+      transition: opacity 0.2s ease-in-out;
+    }
+  }
 }
