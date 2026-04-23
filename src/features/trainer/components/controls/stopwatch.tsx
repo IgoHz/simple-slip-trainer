@@ -39,7 +39,7 @@ export default function Stopwatch({ className }: Props) {
 
   return (
     <div className={`${styles.stopwatch} ${className ?? ''}`}>
-      <label>Time:</label>
+      <span>Time:</span>
       <div className={styles.time}>{formatSecondsToTime(time)}</div>
       <PlayPauseButton isPlaying={isPlaying} onClick={handlePlayPauseClick} />
       <StopButton disabled={isPlaying || !time} onClick={handleResetClick} />

@@ -58,13 +58,14 @@ export default function RateCounter({ className }: Props) {
 
   return (
     <div className={`${styles.rateCounter} ${className ?? ''}`}>
-      <label>Rate:</label>
+      <span>Rate:</span>
       <Button
         label={`-${RATE_COUNTER_AMPLIFIER_VALUE}`}
         disabled={isPlaying || isRateLoading || rate <= RATE_COUNTER_MIN_VALUE}
         onClick={handleRateDecrementClick}
       />
       <Input
+        aria-label="Rate counter input"
         value={rate ?? RATE_COUNTER_MIN_VALUE}
         disabled={isPlaying || isRateLoading}
         isLoading={isRateLoading}

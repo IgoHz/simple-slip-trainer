@@ -1,21 +1,14 @@
-import { memo, ReactNode } from 'react';
+import { ComponentProps, memo, ReactNode } from 'react';
 import styles from './button.module.css';
 
-interface Props {
-  className?: string;
+interface Props extends ComponentProps<'button'> {
   label?: string;
   icon?: ReactNode;
-  disabled?: boolean;
-  onClick: () => void;
 }
 
-function Button({ className, label, icon, disabled, onClick }: Props) {
+function Button({ className, label, icon, ...restProps }: Props) {
   return (
-    <button
-      className={`${styles.button} ${className}`}
-      disabled={disabled}
-      onClick={onClick}
-    >
+    <button className={`${styles.button} ${className}`} {...restProps}>
       {label} {icon}
     </button>
   );

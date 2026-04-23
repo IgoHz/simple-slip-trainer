@@ -8,7 +8,14 @@ interface Props {
 }
 
 function StopButton({ disabled, onClick }: Props) {
-  return <Button icon={<StopIcon />} disabled={disabled} onClick={onClick} />;
+  return (
+    <Button
+      aria-label="Stop button"
+      icon={<StopIcon />}
+      disabled={disabled}
+      onClick={onClick}
+    />
+  );
 }
 
 export default memo(StopButton);

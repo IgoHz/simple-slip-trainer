@@ -6,6 +6,7 @@ const PlayIcon = (props: SVGProps<SVGSVGElement>) => (
     shapeRendering="crispEdges"
     width="1rem"
     height="1rem"
+    aria-hidden
     {...props}
   >
     <path

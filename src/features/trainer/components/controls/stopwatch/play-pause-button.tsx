@@ -10,7 +10,11 @@ interface Props {
 
 function PlayPauseButton({ isPlaying, onClick }: Props) {
   return (
-    <Button icon={isPlaying ? <PauseIcon /> : <PlayIcon />} onClick={onClick} />
+    <Button
+      aria-label={isPlaying ? 'Pause button' : 'Play button'}
+      icon={isPlaying ? <PauseIcon /> : <PlayIcon />}
+      onClick={onClick}
+    />
   );
 }
 

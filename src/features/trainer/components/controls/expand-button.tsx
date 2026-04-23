@@ -13,6 +13,7 @@ function ExpandButton({ className, isExpanded, onClick }: Props) {
   return (
     <Button
       className={className}
+      aria-label={isExpanded ? 'Collapse button' : 'Expand button'}
       icon={isExpanded ? <CollapseIcon /> : <ExpandIcon />}
       onClick={onClick}
     />

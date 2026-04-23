@@ -6,6 +6,7 @@ const ExpandIcon = (props: SVGProps<SVGSVGElement>) => (
     width="1rem"
     height="1rem"
     shapeRendering="crispEdges"
+    aria-hidden
     {...props}
   >
     <path

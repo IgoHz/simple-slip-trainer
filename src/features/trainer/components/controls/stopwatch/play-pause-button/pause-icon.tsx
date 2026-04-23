@@ -6,6 +6,7 @@ const PauseIcon = (props: SVGProps<SVGSVGElement>) => (
     shapeRendering="crispEdges"
     width="1rem"
     height="1rem"
+    aria-hidden
     {...props}
   >
     <path fill="currentColor" d="M4 3h3v10H4zM9 3h3v10H9z" />

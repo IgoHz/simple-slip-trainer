@@ -23,8 +23,8 @@ export default function Controls() {
         isExpanded={isExpanded}
         onClick={handleExpandClick}
       />
-      <label className={styles.mobileLabel}>SST</label>
-      <label className={styles.desktopLabel}>Simple Slip Trainer</label>
+      <h1 className={styles.mobileLabel}>SST</h1>
+      <h1 className={styles.desktopLabel}>Simple Slip Trainer</h1>
       <RateCounter className={styles.rateCounter} />
       <Stopwatch className={styles.stopwatch} />
     </Wrapper>

@@ -6,6 +6,7 @@ const StopIcon = (props: SVGProps<SVGSVGElement>) => (
     shapeRendering="crispEdges"
     width="1rem"
     height="1rem"
+    aria-hidden
     {...props}
   >
     <path fill="currentColor" d="M3 3h10v10H3z" />
