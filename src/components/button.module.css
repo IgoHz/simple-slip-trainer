@@ -12,37 +12,35 @@
 
   transition: border-color 0.2s ease-in-out;
 
+  svg {
+    display: block;
+  }
+
   &:focus-visible {
     outline: 1px solid var(--theme-color-border);
   }
 
-  &:hover {
+  &:hover:not(:disabled) {
     transform: translate(-1px, -1px);
     box-shadow: 1px 1px 0 var(--theme-color-border);
   }
 
-  &:active {
-    &:not(:disabled) {
-      border-color: var(--theme-color-foreground);
-    }
+  &:active:not(:disabled) {
+    border-color: var(--theme-color-foreground);
+  }
 
-    &:hover {
-      transform: translate(0);
-      box-shadow: revert;
-    }
+  &:active:hover:not(:disabled) {
+    transform: translate(0);
+    box-shadow: revert;
   }
 
   &:disabled {
     opacity: 0.8;
     cursor: not-allowed;
-
-    &:hover {
-      box-shadow: revert;
-      transform: revert;
-    }
   }
 
-  svg {
-    display: block;
+  &:disabled:hover {
+    box-shadow: revert;
+    transform: revert;
   }
 }
