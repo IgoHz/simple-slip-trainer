@@ -1,8 +1,8 @@
 :root {
-  --theme-color-background: rgb(225, 225, 225);
-  --theme-color-foreground: rgb(169, 169, 169);
-  --theme-color-text: rgb(25, 25, 25);
-  --theme-color-border: rgb(128, 128, 128);
+  --theme-color-background: #e1e1e1;
+  --theme-color-foreground: #a9a9a9;
+  --theme-color-text: #191919;
+  --theme-color-border: #808080;
 
   --padding-normal: 4px;
 
@@ -11,8 +11,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --theme-color-background: rgb(25, 25, 25);
-    --theme-color-text: rgb(225, 225, 225);
+    --theme-color-background: #191919;
+    --theme-color-text: #e1e1e1;
   }
 }
 
