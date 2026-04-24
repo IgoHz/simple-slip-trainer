@@ -1,7 +1,6 @@
 import Button from '@/components/button';
-import PauseIcon from './play-pause-button/pause-icon';
-import PlayIcon from './play-pause-button/play-icon';
 import { memo } from 'react';
+import Icon from '@/components/icon';
 
 interface Props {
   isPlaying: boolean;
@@ -12,7 +11,7 @@ function PlayPauseButton({ isPlaying, onClick }: Props) {
   return (
     <Button
       aria-label={isPlaying ? 'Pause button' : 'Play button'}
-      icon={isPlaying ? <PauseIcon /> : <PlayIcon />}
+      icon={isPlaying ? <Icon iconName="pause" /> : <Icon iconName="play" />}
       onClick={onClick}
     />
   );

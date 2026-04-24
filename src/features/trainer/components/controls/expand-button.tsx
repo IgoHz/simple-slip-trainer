@@ -1,7 +1,6 @@
 import Button from '@/components/button';
 import { memo } from 'react';
-import ExpandIcon from './expand-button/expand-icon';
-import CollapseIcon from './expand-button/collapse-icon';
+import Icon from '@/components/icon';
 
 interface Props {
   className?: string;
@@ -14,7 +13,9 @@ function ExpandButton({ className, isExpanded, onClick }: Props) {
     <Button
       className={className}
       aria-label={isExpanded ? 'Collapse button' : 'Expand button'}
-      icon={isExpanded ? <CollapseIcon /> : <ExpandIcon />}
+      icon={
+        isExpanded ? <Icon iconName="collapse" /> : <Icon iconName="expand" />
+      }
       onClick={onClick}
     />
   );

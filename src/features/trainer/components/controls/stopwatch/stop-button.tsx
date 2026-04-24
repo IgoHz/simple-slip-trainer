@@ -1,6 +1,6 @@
 import Button from '@/components/button';
-import StopIcon from './stop-button/stop-icon';
 import { memo } from 'react';
+import Icon from '@/components/icon';
 
 interface Props {
   disabled: boolean;
@@ -11,7 +11,7 @@ function StopButton({ disabled, onClick }: Props) {
   return (
     <Button
       aria-label="Stop button"
-      icon={<StopIcon />}
+      icon={<Icon iconName="stop" />}
       disabled={disabled}
       onClick={onClick}
     />
