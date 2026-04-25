@@ -1,19 +1,40 @@
-# Simple Slip Trainer
+# 🥊 Simple Slip Trainer
 
-A web-based boxing training tool for practicing slip movements — a fundamental defensive technique used to evade punches.
+A small, fun side project — a web-based boxing trainer designed to help you practice **slip movements**, one of the most essential defensive skills in boxing.
 
-## What is a Slip?
+> Built for learning, experimenting, and enjoying the craft of both boxing and frontend development.
 
-A slip is a defensive movement where a boxer rotates the head and body off the line of attack, allowing a punch to pass by while remaining in position to counter. This trainer helps boxers develop muscle memory and timing for slip movements.
+---
 
-## Features
+## 🧠 What is a Slip?
 
-- **Stopwatch** — Track training duration
-- **Rate Counter** — Monitor slips per minute
-- **Visual Sectors** — Target areas for slip practice
-- **Expandable Controls** — Customizable training interface
+A **slip** is a defensive technique where a boxer subtly rotates the head and upper body off the center line to avoid an incoming punch — while staying in position to counter.
 
-## Tech Stack
+This trainer is designed to help build:
+
+- Muscle memory
+- Reaction timing
+- Movement rhythm
+
+---
+
+## ✨ Features
+
+- ⏱ **Stopwatch**
+  Track your training sessions in real time
+
+- 📊 **Rate Counter**
+  Measure slips per minute to monitor intensity
+
+- 🎯 **Visual Sectors**
+  Clear visual cues for practicing directional slips
+
+- ⚙️ **Expandable Controls**
+  Adjust training behavior to fit your routine
+
+---
+
+## 🚀 Tech Stack
 
 - **Framework**: Next.js
 - **Language**: TypeScript
@@ -21,32 +42,69 @@ A slip is a defensive movement where a boxer rotates the head and body off the l
 - **State Management**: Zustand
 - **Testing**: Jest + React Testing Library
 
-## Getting Started
+---
+
+## 🛠 Getting Started
 
 ```bash
 # Install dependencies
 pnpm install
 
-# Start development server
+# Run development server
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Then open: http://localhost:3000
 
-## Running Tests
+---
+
+## 🧪 Running Tests
 
 ```bash
 pnpm test
 ```
 
-## Project Structure
+---
+
+## 📁 Project Structure
 
 ```
 src/
-├── app/           # Next.js pages
-├── components/    # Shared UI components
-├── features/     # Feature modules
-│   └── trainer/  # Core training feature
-├── hooks/        # Shared React hooks
-└── utils/        # Utility functions
+├── app/           # Next.js app router / pages
+├── components/    # Reusable UI components
+├── features/      # Domain features
+│   └── trainer/   # Core training logic
+├── hooks/         # Shared React hooks
+└── utils/         # Helper utilities
 ```
+
+---
+
+## 🎯 Project Goals
+
+This project is intentionally simple and focused. It exists to:
+
+- Explore interactive UI patterns
+- Practice clean architecture in frontend apps
+- Experiment with lightweight state management
+- Build something a bit more _fun_ than typical CRUD apps
+
+---
+
+## ⚠️ Disclaimer
+
+This is a **demo / hobby project**.
+It’s not intended to replace real boxing training or coaching.
+
+---
+
+## 📜 Usage & License
+
+This project is shared for demonstration purposes.
+
+- You’re welcome to explore and learn from the code
+- Small snippets can be reused with proper attribution
+- Redistribution or commercial use requires permission
+
+For inquiries or permissions:
+👉 https://www.linkedin.com/in/ihor-tkachenko-fe-dev/
