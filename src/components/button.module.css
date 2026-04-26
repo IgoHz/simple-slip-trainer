@@ -20,18 +20,8 @@
     outline: 1px solid var(--theme-color-border);
   }
 
-  &:hover:not(:disabled) {
-    transform: translate(-1px, -1px);
-    box-shadow: 1px 1px 0 var(--theme-color-border);
-  }
-
   &:active:not(:disabled) {
     border-color: var(--theme-color-foreground);
-  }
-
-  &:active:hover:not(:disabled) {
-    transform: translate(0);
-    box-shadow: revert;
   }
 
   &:disabled {
@@ -39,8 +29,20 @@
     cursor: not-allowed;
   }
 
-  &:disabled:hover {
-    box-shadow: revert;
-    transform: revert;
+  @media (hover: hover) and (pointer: fine) {
+    &:hover:not(:disabled) {
+      transform: translate(-1px, -1px);
+      box-shadow: 1px 1px 0 var(--theme-color-border);
+    }
+
+    &:active:hover:not(:disabled) {
+      transform: translate(0);
+      box-shadow: revert;
+    }
+
+    &:disabled:hover {
+      box-shadow: revert;
+      transform: revert;
+    }
   }
 }

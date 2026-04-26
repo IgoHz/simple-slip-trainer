@@ -15,11 +15,13 @@
     position: relative;
     transition: color 0.2s ease;
 
-    &:hover {
-      opacity: 1;
-
-      .suffix {
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
         opacity: 1;
+
+        .suffix {
+          opacity: 1;
+        }
       }
     }
 
