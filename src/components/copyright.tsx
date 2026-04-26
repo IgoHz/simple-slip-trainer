@@ -1,9 +1,9 @@
-import Wrapper from './wrapper';
+import PaddingWrapper from './padding-wrapper';
 import styles from './copyright.module.css';
 
 export default function Copyright() {
   return (
-    <Wrapper className={styles.copyright}>
+    <PaddingWrapper className={styles.copyright}>
       <a
         href="https://github.com/IgoHz"
         target="_blank"
@@ -17,6 +17,6 @@ export default function Copyright() {
           {'>'}_
         </span>
       </a>
-    </Wrapper>
+    </PaddingWrapper>
   );
 }

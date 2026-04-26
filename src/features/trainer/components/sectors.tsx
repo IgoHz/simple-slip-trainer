@@ -10,7 +10,7 @@ import {
   config as sectorPositionsConfig
 } from '../config/sector';
 import { sectorFactory } from '../utils/sector';
-import Wrapper from '@/components/wrapper';
+import PaddingWrapper from '@/components/padding-wrapper';
 import {
   isPlayingSelector,
   rateSelector,
@@ -40,7 +40,7 @@ export default function Sectors() {
   }
 
   return (
-    <Wrapper className={styles.sectors}>
+    <PaddingWrapper className={styles.sectors}>
       {sectorPositionsConfig.map((position, index) => (
         <Sector
           key={position}
@@ -48,6 +48,6 @@ export default function Sectors() {
           displayType={getDisplayType(index)}
         />
       ))}
-    </Wrapper>
+    </PaddingWrapper>
   );
 }

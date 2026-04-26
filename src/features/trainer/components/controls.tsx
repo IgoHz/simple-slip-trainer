@@ -1,6 +1,6 @@
 'use client';
 
-import Wrapper from '@/components/wrapper';
+import PaddingWrapper from '@/components/padding-wrapper';
 import RateCounter from './controls/rate-counter';
 import Stopwatch from './controls/stopwatch';
 import styles from './controls.module.css';
@@ -15,7 +15,7 @@ export default function Controls() {
   }, []);
 
   return (
-    <Wrapper
+    <PaddingWrapper
       className={`${styles.controls} ${isExpanded ? styles.expanded : ''}`}
     >
       <ExpandButton
@@ -27,6 +27,6 @@ export default function Controls() {
       <h1 className={styles.desktopLabel}>Simple Slip Trainer</h1>
       <RateCounter className={styles.rateCounter} />
       <Stopwatch className={styles.stopwatch} />
-    </Wrapper>
+    </PaddingWrapper>
   );
 }

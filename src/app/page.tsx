@@ -11,7 +11,7 @@ export default function Page() {
       <main className={styles.main}>
         <Sectors />
       </main>
-      <footer>
+      <footer className={styles.footer}>
         <Copyright />
       </footer>
     </div>

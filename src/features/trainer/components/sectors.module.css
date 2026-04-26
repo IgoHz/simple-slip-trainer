@@ -8,4 +8,8 @@
 
   border: var(--border-size) solid var(--theme-color-border);
   background-color: var(--theme-color-foreground);
+
+  @media (max-width: 960px) and (orientation: landscape) {
+    margin-bottom: var(--padding-normal);
+  }
 }
