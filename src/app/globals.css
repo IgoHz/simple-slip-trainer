@@ -22,6 +22,12 @@ body {
   overflow: hidden;
 }
 
+@media (pointer: coarse) {
+  html {
+    font-size: 1.125rem;
+  }
+}
+
 body {
   color: var(--theme-color-text);
   background: var(--theme-color-background);

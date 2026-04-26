@@ -2,7 +2,8 @@
   display: grid;
   grid-template-rows: auto 1fr auto;
 
-  min-height: 100vh;
+  height: 100vh; /* Fallback for older browsers */
+  height: 100svh; /* Fits within visible screen on load */
 
   border: var(--border-size) solid var(--theme-color-border);
 
