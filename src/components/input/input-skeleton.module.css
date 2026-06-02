@@ -15,6 +15,10 @@
 
   border: var(--border-size) solid var(--theme-color-border);
 
-  opacity: 0.8;
+  opacity: 0.6;
   cursor: not-allowed;
+
+  @media (pointer: coarse) {
+    max-height: 1.6rem;
+  }
 }
