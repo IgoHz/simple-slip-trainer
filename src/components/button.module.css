@@ -3,6 +3,11 @@
   font-size: 0.875rem;
   line-height: 1rem;
 
+  appearance: none;
+  -webkit-appearance: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+
   padding: var(--padding-normal);
 
   color: var(--theme-color-text);
@@ -10,7 +15,9 @@
 
   border: var(--border-size) solid var(--theme-color-border);
 
-  transition: border-color 0.2s ease-in-out;
+  transition:
+    border-color 0.2s ease-in-out,
+    filter 0.2s ease-in-out;
 
   svg {
     display: block;
@@ -22,6 +29,7 @@
 
   &:active:not(:disabled) {
     border-color: var(--theme-color-foreground);
+    filter: brightness(0.95);
   }
 
   &:disabled {
