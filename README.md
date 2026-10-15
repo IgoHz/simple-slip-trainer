@@ -36,6 +36,7 @@ This trainer is designed to help build:
 
 ## 🚀 Tech Stack
 
+- **Architecture**: Feature-Sliced Design (FSD)
 - **Framework**: Next.js
 - **Language**: TypeScript
 - **Styling**: CSS Modules
@@ -68,14 +69,16 @@ pnpm test
 
 ## 📁 Project Structure
 
-```
+Organized according to **Feature-Sliced Design (FSD)**:
+
+```text
 src/
-├── app/           # Next.js app router / pages
-├── components/    # Reusable UI components
-├── features/      # Domain features
-│   └── trainer/   # Core training logic
-├── hooks/         # Shared React hooks
-└── utils/         # Helper utilities
+├── app/                  # Application entry point, global styles, and route entries
+├── pages/                # Route-level page compositions (TrainerPage)
+├── widgets/              # Composite UI blocks (Controls header, Sectors board)
+├── features/             # User actions & interactions (adjust-rate, manage-stopwatch)
+├── entities/             # Business domain models & stores (sector, session)
+└── shared/               # Domain-agnostic primitives (ui components, lib hooks & utils)
 ```
 
 ---
@@ -85,7 +88,7 @@ src/
 This project is intentionally simple and focused. It exists to:
 
 - Explore interactive UI patterns
-- Practice clean architecture in frontend apps
+- Practice clean, scalable frontend architecture (Feature-Sliced Design)
 - Experiment with lightweight state management
 - Build something a bit more _fun_ than typical CRUD apps
 
