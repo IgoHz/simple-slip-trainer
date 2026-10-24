@@ -1,4 +1,5 @@
 .sectors {
+  position: relative;
   grid-row: span 1;
 
   display: flex;

@@ -7,7 +7,7 @@ describe('TrainerPage', () => {
     expect(
       screen.getByRole('heading', { name: /simple slip trainer/i })
     ).toBeInTheDocument();
-    expect(screen.getAllByAltText('Fist image')).toHaveLength(4);
+    expect(screen.getAllByAltText('Fist image')).toHaveLength(8);
     expect(screen.getByText(/© \d{4} IHOR T\./)).toBeInTheDocument();
   });
 });

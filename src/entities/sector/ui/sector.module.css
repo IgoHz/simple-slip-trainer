@@ -1,21 +1,43 @@
 @keyframes punch-left {
   0% {
-    transform: translate(-50%, -50%) rotateY(180deg) rotateZ(85deg);
+    transform: translate(-50%, -50%) rotateY(180deg) rotateZ(85deg) scale(0.2);
     opacity: 0;
   }
   100% {
-    transform: translate(-50%, -50%) rotateY(180deg) rotateZ(-15deg);
+    transform: translate(-50%, -50%) rotateY(180deg) rotateZ(-15deg) scale(1);
     opacity: 1;
   }
 }
 
 @keyframes punch-right {
   0% {
-    transform: translate(-50%, -50%) rotateZ(85deg);
+    transform: translate(-50%, -50%) rotateZ(85deg) scale(0.2);
     opacity: 0;
   }
   100% {
-    transform: translate(-50%, -50%) rotateZ(-15deg);
+    transform: translate(-50%, -50%) rotateZ(-15deg) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes punch-straight-left {
+  0% {
+    transform: translate(-50%, -50%) rotateY(180deg) rotateZ(30deg) scale(0.2);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%) rotateY(180deg) rotateZ(-5deg) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes punch-straight-right {
+  0% {
+    transform: translate(-50%, -50%) rotateZ(30deg) scale(0.2);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%) rotateZ(-5deg) scale(1);
     opacity: 1;
   }
 }
@@ -44,6 +66,33 @@
 .leftLower,
 .rightLower {
   border-top: 1px solid var(--theme-color-border);
+}
+
+.upperLeftStraight,
+.upperRightStraight,
+.lowerLeftStraight,
+.lowerRightStraight {
+  position: absolute;
+  left: 25%;
+  right: 25%;
+
+  width: auto;
+  height: auto;
+  flex-basis: auto;
+
+  pointer-events: none;
+}
+
+.upperLeftStraight,
+.upperRightStraight {
+  top: 0;
+  bottom: calc(50% + 1px);
+}
+
+.lowerLeftStraight,
+.lowerRightStraight {
+  top: calc(50% + 1px);
+  bottom: 0;
 }
 
 .image {
@@ -83,5 +132,17 @@
 :is(.rightUpper, .rightLower) {
   .animated {
     animation-name: punch-right;
+  }
+}
+
+:is(.upperLeftStraight, .lowerLeftStraight) {
+  .animated {
+    animation-name: punch-straight-left;
+  }
+}
+
+:is(.upperRightStraight, .lowerRightStraight) {
+  .animated {
+    animation-name: punch-straight-right;
   }
 }
