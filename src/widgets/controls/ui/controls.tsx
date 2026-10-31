@@ -3,6 +3,7 @@
 import { useCallback, useState } from 'react';
 import styles from './controls.module.css';
 import { PaddingWrapper } from '@/shared/ui';
+import { ModeSelector } from '@/features/select-mode';
 import { RateCounter } from '@/features/adjust-rate';
 import { Stopwatch } from '@/features/manage-stopwatch';
 import ExpandButton from './expand-button';
@@ -29,6 +30,7 @@ export default function Controls({ className }: ControlsProps) {
       />
       <h1 className={styles.mobileLabel}>SST</h1>
       <h1 className={styles.desktopLabel}>Simple Slip Trainer</h1>
+      <ModeSelector className={styles.modeSelector} />
       <RateCounter className={styles.rateCounter} />
       <Stopwatch className={styles.stopwatch} />
     </PaddingWrapper>

@@ -25,4 +25,12 @@ describe('Controls', () => {
       screen.getByRole('button', { name: /stop button/i })
     ).toBeInTheDocument();
   });
+
+  it('renders mode selector controls', () => {
+    render(<Controls />);
+    expect(screen.getByText('Mode:')).toBeInTheDocument();
+    expect(
+      screen.getByRole('button', { name: /random singles mode/i })
+    ).toBeInTheDocument();
+  });
 });

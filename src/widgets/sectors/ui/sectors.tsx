@@ -1,21 +1,22 @@
 'use client';
 
-import { useState } from 'react';
 import styles from './sectors.module.css';
 import {
   Sector,
   SectorDisplayType,
-  sectorPositionsConfig,
-  sectorFactory
+  sectorPositionsConfig
 } from '@/entities/sector';
 import {
-  calcRateCoeficient,
   isPlayingSelector,
+  modeSelector,
   rateSelector,
+  resetCountSelector,
+  TrainingMode,
   useSessionStore
 } from '@/entities/session';
 import { PaddingWrapper } from '@/shared/ui';
-import { useInterval, useStoreAsync } from '@/shared/lib';
+import { useStoreAsync } from '@/shared/lib';
+import { usePlaybackEngine } from '../lib/use-playback-engine';
 
 export interface SectorsProps {
   className?: string;
@@ -24,19 +25,20 @@ export interface SectorsProps {
 export default function Sectors({ className }: SectorsProps) {
   const rate = useStoreAsync(useSessionStore, rateSelector);
   const isPlaying = useSessionStore(isPlayingSelector);
+  const mode =
+    useStoreAsync(useSessionStore, modeSelector) ?? TrainingMode.RANDOM_SINGLES;
+  const resetCount = useSessionStore(resetCountSelector);
 
-  const [activeSector, setActiveSector] = useState(sectorFactory(0, 0));
-
-  const intervalCallback = () => {
-    setActiveSector((sector) =>
-      sectorFactory(sector.index, sector.repeatCount)
-    );
-  };
-
-  useInterval(isPlaying, intervalCallback, calcRateCoeficient(rate) * 2 * 1000);
+  const { activeSectorIndex, animationDuration, animationKey } =
+    usePlaybackEngine({
+      isPlaying,
+      rate,
+      mode,
+      resetCount
+    });
 
   function getDisplayType(index: number): SectorDisplayType {
-    if (isPlaying && activeSector.index === index) {
+    if (isPlaying && activeSectorIndex === index) {
       return SectorDisplayType.ANIMATED;
     }
     return SectorDisplayType.DEFAULT;
@@ -49,7 +51,8 @@ export default function Sectors({ className }: SectorsProps) {
           key={position}
           position={position}
           displayType={getDisplayType(index)}
-          animationDuration={`${calcRateCoeficient(rate)}s`}
+          animationDuration={animationDuration}
+          animationKey={animationKey}
         />
       ))}
     </PaddingWrapper>

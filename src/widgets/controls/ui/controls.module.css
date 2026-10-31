@@ -1,6 +1,6 @@
 .controls {
   display: grid;
-  grid-template-columns: 1fr auto auto;
+  grid-template-columns: 1fr auto auto auto;
   gap: 16px;
 
   .expandButton {
@@ -22,12 +22,14 @@
     grid-template-columns: auto 1fr auto;
     grid-template-areas:
       'button label stopwatch'
+      'mode-selector mode-selector mode-selector'
       'rate-counter rate-counter rate-counter';
     gap: 8px;
 
     &:not(.expanded) {
       grid-template-areas: 'button label stopwatch';
 
+      .modeSelector,
       .rateCounter {
         display: none;
       }
@@ -35,6 +37,10 @@
 
     .expandButton {
       display: revert;
+    }
+
+    .modeSelector {
+      grid-area: mode-selector;
     }
 
     .rateCounter {

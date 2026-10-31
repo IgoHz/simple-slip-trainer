@@ -7,10 +7,15 @@ export {
 export {
   rateSelector,
   isPlayingSelector,
+  modeSelector,
+  resetCountSelector,
   setRateSelector,
-  setIsPlayingSelector
+  setIsPlayingSelector,
+  setModeSelector,
+  resetSessionSelector
 } from './model/selectors';
 
+export { TrainingMode } from './model/types';
 export type { SessionState, State } from './model/types';
 
 export {

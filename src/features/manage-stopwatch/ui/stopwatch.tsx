@@ -5,6 +5,7 @@ import styles from './stopwatch.module.css';
 import { useInterval, formatSecondsToTime } from '@/shared/lib';
 import {
   isPlayingSelector,
+  resetSessionSelector,
   setIsPlayingSelector,
   useSessionStore
 } from '@/entities/session';
@@ -18,6 +19,7 @@ export interface StopwatchProps {
 export default function Stopwatch({ className }: StopwatchProps) {
   const isPlaying = useSessionStore(isPlayingSelector);
   const setIsPlaying = useSessionStore(setIsPlayingSelector);
+  const resetSession = useSessionStore(resetSessionSelector);
 
   const [time, setTime] = useState(0);
 
@@ -33,7 +35,10 @@ export default function Stopwatch({ className }: StopwatchProps) {
 
   const handleResetClick = useCallback(() => {
     setTime(0);
-  }, []);
+    if (typeof resetSession === 'function') {
+      resetSession();
+    }
+  }, [resetSession]);
 
   return (
     <div className={`${styles.stopwatch} ${className ?? ''}`}>

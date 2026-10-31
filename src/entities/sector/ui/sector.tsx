@@ -8,13 +8,15 @@ export interface SectorProps {
   displayType: SectorDisplayType;
   animationDuration?: string;
   className?: string;
+  animationKey?: number | string;
 }
 
 export default function Sector({
   position,
   displayType,
   animationDuration,
-  className
+  className,
+  animationKey
 }: SectorProps) {
   const style = useMemo(
     () => (animationDuration ? { animationDuration } : undefined),
@@ -31,6 +33,7 @@ export default function Sector({
       className={`${sectorClass} ${positionClass} ${className ?? ''}`.trim()}
     >
       <FistImage
+        key={animationKey}
         className={`${imageClass} ${displayClass}`.trim()}
         style={style}
       />

@@ -33,6 +33,33 @@ export function getPunchType(position: SectorPosition): PunchType {
   }
 }
 
+export function toPunchType(punch: SectorPosition | PunchType): PunchType {
+  const punchTypes = Object.values(PunchType);
+  if (punchTypes.includes(punch as PunchType)) {
+    return punch as PunchType;
+  }
+  return getPunchType(punch as SectorPosition);
+}
+
+export const PUNCH_TYPE_TO_POSITIONS: Record<
+  PunchType,
+  readonly SectorPosition[]
+> = {
+  [PunchType.LEFT_HOOK]: [SectorPosition.LEFT_UPPER, SectorPosition.LEFT_LOWER],
+  [PunchType.RIGHT_HOOK]: [
+    SectorPosition.RIGHT_UPPER,
+    SectorPosition.RIGHT_LOWER
+  ],
+  [PunchType.LEFT_STRAIGHT]: [
+    SectorPosition.UPPER_LEFT_STRAIGHT,
+    SectorPosition.LOWER_LEFT_STRAIGHT
+  ],
+  [PunchType.RIGHT_STRAIGHT]: [
+    SectorPosition.UPPER_RIGHT_STRAIGHT,
+    SectorPosition.LOWER_RIGHT_STRAIGHT
+  ]
+};
+
 export enum SectorDisplayType {
   DEFAULT = 'default',
   ANIMATED = 'animated'

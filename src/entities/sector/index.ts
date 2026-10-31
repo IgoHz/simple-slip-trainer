@@ -8,7 +8,9 @@ export {
   SectorPosition,
   SectorDisplayType,
   PunchType,
-  getPunchType
+  getPunchType,
+  toPunchType,
+  PUNCH_TYPE_TO_POSITIONS
 } from './model/types';
 export type { ISectorManager } from './model/types';
 
