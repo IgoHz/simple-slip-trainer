@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ExpandButton } from '@/widgets/controls';
+import { vi } from 'vitest';
 
 describe('ExpandButton', () => {
   it('renders expand button when not expanded', () => {
@@ -19,7 +20,7 @@ describe('ExpandButton', () => {
 
   it('calls onClick when clicked', async () => {
     const user = userEvent.setup();
-    const handleClick = jest.fn();
+    const handleClick = vi.fn();
     render(<ExpandButton isExpanded={false} onClick={handleClick} />);
     await user.click(screen.getByRole('button', { name: /expand button/i }));
     expect(handleClick).toHaveBeenCalledTimes(1);

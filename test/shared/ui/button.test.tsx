@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Button } from '@/shared/ui';
+import { vi } from 'vitest';
 
 describe('Button', () => {
   it('renders label', () => {
@@ -18,7 +19,7 @@ describe('Button', () => {
 
   it('handles click', async () => {
     const user = userEvent.setup();
-    const handleClick = jest.fn();
+    const handleClick = vi.fn();
     render(<Button label="Click me" onClick={handleClick} />);
     await user.click(screen.getByRole('button', { name: /click me/i }));
     expect(handleClick).toHaveBeenCalledTimes(1);

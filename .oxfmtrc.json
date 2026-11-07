@@ -1,0 +1,16 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "printWidth": 80,
+  "tabWidth": 2,
+  "singleQuote": true,
+  "trailingComma": "none",
+  "ignorePatterns": [
+    ".ai/**",
+    ".next/**",
+    "build/**",
+    "bun.lock",
+    "coverage/**",
+    "node_modules/**",
+    "out/**"
+  ]
+}

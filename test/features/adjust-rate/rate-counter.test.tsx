@@ -2,40 +2,41 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { RateCounter } from '@/features/adjust-rate';
 import * as sessionModule from '@/entities/session';
 import * as sharedLibModule from '@/shared/lib';
+import { vi, type Mock } from 'vitest';
 
 const RATE_COUNTER_MIN_VALUE = 60;
 const RATE_COUNTER_AMPLIFIER_VALUE = 5;
 
-jest.mock('@/entities/session', () => {
-  const actual = jest.requireActual('@/entities/session');
+vi.mock('@/entities/session', async () => {
+  const actual = await vi.importActual('@/entities/session');
   return {
     ...actual,
-    useSessionStore: jest.fn(),
-    useControlsStore: jest.fn(),
-    rateSelector: jest.fn((state) => state.rate),
-    isPlayingSelector: jest.fn((state) => state.isPlaying),
-    setRateSelector: jest.fn((state) => state.setRate)
+    useSessionStore: vi.fn(),
+    useControlsStore: vi.fn(),
+    rateSelector: vi.fn((state) => state.rate),
+    isPlayingSelector: vi.fn((state) => state.isPlaying),
+    setRateSelector: vi.fn((state) => state.setRate)
   };
 });
 
-jest.mock('@/shared/lib', () => {
-  const actual = jest.requireActual('@/shared/lib');
+vi.mock('@/shared/lib', async () => {
+  const actual = await vi.importActual('@/shared/lib');
   return {
     ...actual,
-    useStoreAsync: jest.fn()
+    useStoreAsync: vi.fn()
   };
 });
 
 function setup({ rate = 5, isPlaying = false, isRateLoading = false } = {}) {
-  const setRate = jest.fn();
-  (sessionModule.useSessionStore as unknown as jest.Mock).mockImplementation(
+  const setRate = vi.fn();
+  (sessionModule.useSessionStore as unknown as Mock).mockImplementation(
     (selector) => {
       if (selector === sessionModule.isPlayingSelector) return isPlaying;
       if (selector === sessionModule.setRateSelector) return setRate;
       return undefined;
     }
   );
-  (sharedLibModule.useStoreAsync as jest.Mock).mockImplementation(() => {
+  (sharedLibModule.useStoreAsync as Mock).mockImplementation(() => {
     if (isRateLoading) return undefined;
     return rate;
   });
@@ -44,7 +45,7 @@ function setup({ rate = 5, isPlaying = false, isRateLoading = false } = {}) {
 
 describe('RateCounter', () => {
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it('renders with initial value', () => {

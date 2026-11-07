@@ -7,15 +7,16 @@ import {
   SectorPosition,
   sectorPositionsConfig
 } from '@/entities/sector';
+import { vi } from 'vitest';
 
 describe('usePlaybackEngine', () => {
   beforeEach(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
   });
 
   afterEach(() => {
-    jest.clearAllTimers();
-    jest.useRealTimers();
+    vi.clearAllTimers();
+    vi.useRealTimers();
   });
 
   const testCombo: PunchCombination = {
@@ -76,7 +77,7 @@ describe('usePlaybackEngine', () => {
 
     // Advance 600ms to punch 2
     act(() => {
-      jest.advanceTimersByTime(600);
+      vi.advanceTimersByTime(600);
     });
 
     const secondSector = result.current.activeSectorIndex;
@@ -85,7 +86,7 @@ describe('usePlaybackEngine', () => {
 
     // Advance 600ms to rest step
     act(() => {
-      jest.advanceTimersByTime(600);
+      vi.advanceTimersByTime(600);
     });
 
     // During rest step, activeSectorIndex is null
@@ -94,7 +95,7 @@ describe('usePlaybackEngine', () => {
 
     // Advance 2000ms through rest period to next sequence
     act(() => {
-      jest.advanceTimersByTime(2000);
+      vi.advanceTimersByTime(2000);
     });
 
     // Next sequence starts
@@ -118,7 +119,7 @@ describe('usePlaybackEngine', () => {
 
     // 200ms into the first 600ms punch
     act(() => {
-      jest.advanceTimersByTime(200);
+      vi.advanceTimersByTime(200);
     });
 
     // Pause
@@ -127,7 +128,7 @@ describe('usePlaybackEngine', () => {
 
     // Advancing timers while paused should do nothing
     act(() => {
-      jest.advanceTimersByTime(1000);
+      vi.advanceTimersByTime(1000);
     });
     expect(result.current.activeSectorIndex).toBeNull();
 
@@ -138,13 +139,13 @@ describe('usePlaybackEngine', () => {
     // Remaining time in punch 1 was 400ms (600 - 200).
     // Advancing 390ms should still be in punch 1:
     act(() => {
-      jest.advanceTimersByTime(390);
+      vi.advanceTimersByTime(390);
     });
     expect(result.current.activeSectorIndex).toBe(firstSector);
 
     // Advancing another 20ms should complete punch 1 and transition to punch 2
     act(() => {
-      jest.advanceTimersByTime(20);
+      vi.advanceTimersByTime(20);
     });
     expect(result.current.activeSectorIndex).not.toBeNull();
   });
@@ -210,7 +211,7 @@ describe('usePlaybackEngine', () => {
 
     // Punch 1 still finishes after remaining time
     act(() => {
-      jest.advanceTimersByTime(600);
+      vi.advanceTimersByTime(600);
     });
     expect(result.current.activeSectorIndex).not.toBeNull();
   });
@@ -225,11 +226,11 @@ describe('usePlaybackEngine', () => {
       })
     );
 
-    expect(jest.getTimerCount()).toBe(1);
+    expect(vi.getTimerCount()).toBe(1);
 
     unmount();
 
-    expect(jest.getTimerCount()).toBe(0);
+    expect(vi.getTimerCount()).toBe(0);
   });
 
   it('handles rapid pause and resume interactions correctly', () => {
@@ -249,7 +250,7 @@ describe('usePlaybackEngine', () => {
 
     // Advance slightly
     act(() => {
-      jest.advanceTimersByTime(50);
+      vi.advanceTimersByTime(50);
     });
 
     // Rapid pause-resume cycles
@@ -267,7 +268,7 @@ describe('usePlaybackEngine', () => {
 
     // Advance remaining time (~550ms)
     act(() => {
-      jest.advanceTimersByTime(560);
+      vi.advanceTimersByTime(560);
     });
 
     // Should transition to step 2
@@ -322,7 +323,7 @@ describe('usePlaybackEngine', () => {
 
     // Advance 2000ms to punch 2
     act(() => {
-      jest.advanceTimersByTime(2000);
+      vi.advanceTimersByTime(2000);
     });
 
     expect(result.current.activeSectorIndex).not.toBeNull();
@@ -356,7 +357,7 @@ describe('usePlaybackEngine', () => {
     );
 
     act(() => {
-      jest.advanceTimersByTime(500);
+      vi.advanceTimersByTime(500);
     });
 
     // Punch 2: UPPER_RIGHT_STRAIGHT
@@ -365,7 +366,7 @@ describe('usePlaybackEngine', () => {
     );
 
     act(() => {
-      jest.advanceTimersByTime(500);
+      vi.advanceTimersByTime(500);
     });
 
     // Punch 3: RIGHT_LOWER
@@ -379,7 +380,7 @@ describe('usePlaybackEngine', () => {
     // Call 1: in selectSequence (randomFn < mixedProbability) -> return 0.8 (selects SINGLE)
     // Call 2: in selectSequence (randomFn < mixedProbability) -> return 0.2 (selects COMBO)
     let callCount = 0;
-    const mockRandom = jest.spyOn(Math, 'random').mockImplementation(() => {
+    const mockRandom = vi.spyOn(Math, 'random').mockImplementation(() => {
       callCount++;
       return callCount === 1 ? 0.8 : 0.2;
     });
@@ -400,7 +401,7 @@ describe('usePlaybackEngine', () => {
 
     // Advance 2000ms: single punch finishes, transitions to combination
     act(() => {
-      jest.advanceTimersByTime(2000);
+      vi.advanceTimersByTime(2000);
     });
 
     // Since single was followed by combo, Step 0 of combo is a rest delay!
@@ -409,7 +410,7 @@ describe('usePlaybackEngine', () => {
 
     // Advance 2000ms through the rest delay
     act(() => {
-      jest.advanceTimersByTime(2000);
+      vi.advanceTimersByTime(2000);
     });
 
     // Combo punch 1 is now active!

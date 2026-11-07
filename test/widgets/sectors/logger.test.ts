@@ -1,12 +1,13 @@
 import { PlaybackSequence } from '@/entities/combination';
 import { SectorPosition } from '@/entities/sector';
 import { logSequenceDev } from '@/widgets/sectors/lib/logger';
+import { vi, type MockInstance } from 'vitest';
 
 describe('logSequenceDev', () => {
-  let logSpy: jest.SpyInstance;
+  let logSpy: MockInstance;
 
   beforeEach(() => {
-    logSpy = jest.spyOn(console, 'log').mockImplementation(() => {});
+    logSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
   });
 
   afterEach(() => {

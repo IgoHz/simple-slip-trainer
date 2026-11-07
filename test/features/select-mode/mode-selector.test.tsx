@@ -3,40 +3,41 @@ import { ModeSelector } from '@/features/select-mode';
 import * as sessionModule from '@/entities/session';
 import { TrainingMode } from '@/entities/session';
 import * as sharedLibModule from '@/shared/lib';
+import { vi, type Mock } from 'vitest';
 
-jest.mock('@/entities/session', () => {
-  const actual = jest.requireActual('@/entities/session');
+vi.mock('@/entities/session', async () => {
+  const actual = await vi.importActual('@/entities/session');
   return {
     ...actual,
-    useSessionStore: jest.fn(),
-    modeSelector: jest.fn((state) => state.mode),
-    setModeSelector: jest.fn((state) => state.setMode)
+    useSessionStore: vi.fn(),
+    modeSelector: vi.fn((state) => state.mode),
+    setModeSelector: vi.fn((state) => state.setMode)
   };
 });
 
-jest.mock('@/shared/lib', () => {
-  const actual = jest.requireActual('@/shared/lib');
+vi.mock('@/shared/lib', async () => {
+  const actual = await vi.importActual('@/shared/lib');
   return {
     ...actual,
-    useStoreAsync: jest.fn()
+    useStoreAsync: vi.fn()
   };
 });
 
 function setup({ mode = TrainingMode.RANDOM_SINGLES } = {}) {
-  const setMode = jest.fn();
-  (sessionModule.useSessionStore as unknown as jest.Mock).mockImplementation(
+  const setMode = vi.fn();
+  (sessionModule.useSessionStore as unknown as Mock).mockImplementation(
     (selector) => {
       if (selector === sessionModule.setModeSelector) return setMode;
       return undefined;
     }
   );
-  (sharedLibModule.useStoreAsync as jest.Mock).mockReturnValue(mode);
+  (sharedLibModule.useStoreAsync as Mock).mockReturnValue(mode);
   return { setMode };
 }
 
 describe('ModeSelector', () => {
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it('renders all three mode buttons', () => {

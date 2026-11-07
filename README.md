@@ -49,29 +49,36 @@ This trainer is designed to help build:
 - **Language**: TypeScript
 - **Styling**: CSS Modules
 - **State Management**: Zustand
-- **Testing**: Jest + React Testing Library
+- **Testing**: Vitest + React Testing Library
+- **Tooling**: Bun, Oxlint, Oxfmt
 
 ---
 
 ## 🛠 Getting Started
 
 ```bash
-# Install dependencies
-pnpm install
+# Install dependencies from the lockfile
+bun install --frozen-lockfile
 
 # Run development server
-pnpm dev
+bun run dev
 ```
 
 Then open: http://localhost:3000
+
+Development requires Node.js 22.12 or newer and Bun 1.4.4.
 
 ---
 
 ## 🧪 Running Tests
 
 ```bash
-pnpm test
+bun run test
 ```
+
+Use `bun run test:watch` for watch mode. The `test` command includes V8 coverage.
+Run `bun run lint`, `bun run format-check`, and `bun run type-check` to check
+code quality, formatting, and TypeScript types.
 
 ---
 

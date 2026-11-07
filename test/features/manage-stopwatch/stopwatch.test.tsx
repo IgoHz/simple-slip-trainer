@@ -1,31 +1,47 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import React from 'react';
+import { useState } from 'react';
 import { Stopwatch } from '@/features/manage-stopwatch';
 import { useSessionStore } from '@/entities/session';
 import { useInterval } from '@/shared/lib';
+import { vi, type Mock } from 'vitest';
 
-jest.mock('@/entities/session', () => ({
-  useSessionStore: jest.fn(),
-  useControlsStore: jest.fn(),
-  isPlayingSelector: jest.fn(),
-  setIsPlayingSelector: jest.fn()
-}));
-
-jest.mock('@/shared/lib', () => {
-  const actual = jest.requireActual('@/shared/lib');
+vi.mock('react', async () => {
+  const actual = await vi.importActual<typeof import('react')>('react');
   return {
     ...actual,
-    useInterval: jest.fn()
+    useState: vi.fn(actual.useState)
   };
 });
 
-const mockUseSessionStore = useSessionStore as unknown as jest.Mock;
-const mockUseInterval = useInterval as unknown as jest.Mock;
+vi.mock('@/entities/session', async () => {
+  const actual =
+    await vi.importActual<typeof import('@/entities/session')>(
+      '@/entities/session'
+    );
+  return {
+    ...actual,
+    useSessionStore: vi.fn(),
+    useControlsStore: vi.fn(),
+    isPlayingSelector: vi.fn(),
+    setIsPlayingSelector: vi.fn()
+  };
+});
+
+vi.mock('@/shared/lib', async () => {
+  const actual = await vi.importActual('@/shared/lib');
+  return {
+    ...actual,
+    useInterval: vi.fn()
+  };
+});
+
+const mockUseSessionStore = useSessionStore as unknown as Mock;
+const mockUseInterval = useInterval as unknown as Mock;
 
 describe('Stopwatch', () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it('renders time label and display', () => {
@@ -40,7 +56,7 @@ describe('Stopwatch', () => {
     mockUseSessionStore.mockReturnValue(false);
 
     // Mock useState to have time = 65 (1:05)
-    jest.spyOn(React, 'useState').mockReturnValueOnce([65, jest.fn()]);
+    vi.mocked(useState).mockReturnValueOnce([65, vi.fn()]);
 
     render(<Stopwatch />);
     expect(screen.getByText('01:05')).toBeInTheDocument();
@@ -59,7 +75,7 @@ describe('Stopwatch', () => {
 
   it('handles play/pause click', async () => {
     const user = userEvent.setup();
-    const mockSetIsPlaying = jest.fn();
+    const mockSetIsPlaying = vi.fn();
     mockUseSessionStore
       .mockReturnValueOnce(false)
       .mockReturnValueOnce(mockSetIsPlaying); // isPlaying, setIsPlaying
@@ -71,11 +87,11 @@ describe('Stopwatch', () => {
 
   it('handles stop click', async () => {
     const user = userEvent.setup();
-    const mockSetTime = jest.fn();
+    const mockSetTime = vi.fn();
     mockUseSessionStore.mockReturnValue(false);
 
     // Mock useState
-    jest.spyOn(React, 'useState').mockReturnValueOnce([10, mockSetTime]);
+    vi.mocked(useState).mockReturnValueOnce([10, mockSetTime]);
 
     render(<Stopwatch />);
     await user.click(screen.getByRole('button', { name: /stop button/i }));
@@ -92,7 +108,7 @@ describe('Stopwatch', () => {
   it('enables stop button when time > 0', () => {
     mockUseSessionStore.mockReturnValue(false);
 
-    jest.spyOn(React, 'useState').mockReturnValueOnce([1, jest.fn()]);
+    vi.mocked(useState).mockReturnValueOnce([1, vi.fn()]);
 
     render(<Stopwatch />);
     expect(

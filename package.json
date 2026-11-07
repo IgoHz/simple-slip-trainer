@@ -3,16 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "prepare": "husky || true",
+    "prepare": "husky",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint --fix",
+    "lint": "oxlint .",
+    "lint:fix": "oxlint . --fix",
     "type-check": "tsc --noEmit",
-    "format": "prettier . --write",
-    "format-check": "prettier . --check",
-    "test": "jest --coverage",
-    "validate": "pnpm build && pnpm lint && pnpm type-check && pnpm format-check && pnpm test"
+    "format": "oxfmt .",
+    "format-check": "oxfmt --check .",
+    "test": "vitest run --coverage",
+    "test:watch": "vitest",
+    "test:coverage": "bun run test",
+    "validate": "bun run build && bun run lint && bun run type-check && bun run format-check && bun run test"
   },
   "dependencies": {
     "next": "16.1.6",
@@ -24,18 +27,20 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
-    "@types/jest": "^30.0.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.1.6",
-    "eslint-config-prettier": "^10.1.8",
+    "@vitest/coverage-v8": "^5.1.0",
     "husky": "^9.1.7",
-    "jest": "^30.3.0",
-    "jest-environment-jsdom": "^30.3.0",
-    "playwright": "^1.64.1",
-    "prettier": "^3.8.1",
-    "typescript": "^5"
-  }
+    "jsdom": "^31.0.0",
+    "oxfmt": "^0.77.0",
+    "oxlint": "^1.92.0",
+    "typescript": "^5",
+    "vite": "^8.3.6",
+    "vitest": "^5.1.0"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "packageManager": "bun@1.4.4"
 }

@@ -1,6 +1,7 @@
 import { render, screen, act } from '@testing-library/react';
 import { useInterval } from '@/shared/lib';
 import { useState } from 'react';
+import { vi } from 'vitest';
 
 function TestComponent({
   isRunning,
@@ -16,11 +17,11 @@ function TestComponent({
 
 describe('useInterval', () => {
   beforeEach(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
   });
 
   afterEach(() => {
-    jest.useRealTimers();
+    vi.useRealTimers();
   });
 
   it('calls onInterval when running', () => {
@@ -28,12 +29,12 @@ describe('useInterval', () => {
     expect(screen.getByTestId('count')).toHaveTextContent('0');
 
     act(() => {
-      jest.advanceTimersByTime(1000);
+      vi.advanceTimersByTime(1000);
     });
     expect(screen.getByTestId('count')).toHaveTextContent('1');
 
     act(() => {
-      jest.advanceTimersByTime(1000);
+      vi.advanceTimersByTime(1000);
     });
     expect(screen.getByTestId('count')).toHaveTextContent('2');
   });
@@ -41,7 +42,7 @@ describe('useInterval', () => {
   it('does not call when not running', () => {
     render(<TestComponent isRunning={false} delay={1000} />);
     act(() => {
-      jest.advanceTimersByTime(2000);
+      vi.advanceTimersByTime(2000);
     });
     expect(screen.getByTestId('count')).toHaveTextContent('0');
   });
@@ -51,13 +52,13 @@ describe('useInterval', () => {
       <TestComponent isRunning={true} delay={1000} />
     );
     act(() => {
-      jest.advanceTimersByTime(1000);
+      vi.advanceTimersByTime(1000);
     });
     expect(screen.getByTestId('count')).toHaveTextContent('1');
 
     rerender(<TestComponent isRunning={false} delay={1000} />);
     act(() => {
-      jest.advanceTimersByTime(1000);
+      vi.advanceTimersByTime(1000);
     });
     expect(screen.getByTestId('count')).toHaveTextContent('1'); // should not increment
   });

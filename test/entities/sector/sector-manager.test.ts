@@ -16,11 +16,9 @@ describe('sectorFactory and SectorManager', () => {
     const prevRepeatCount = 1;
     const firstManager = sectorFactory(prevIndex, prevRepeatCount);
     const repeatedManager = sectorFactory(firstManager.index, prevRepeatCount);
-    if (repeatedManager.index === firstManager.index) {
-      expect(repeatedManager.repeatCount).toBe(prevRepeatCount + 1);
-    } else {
-      expect(repeatedManager.repeatCount).toBe(1);
-    }
+    expect(repeatedManager.repeatCount).toBe(
+      repeatedManager.index === firstManager.index ? prevRepeatCount + 1 : 1
+    );
   });
 
   it('repeatCount resets if index changes', () => {
