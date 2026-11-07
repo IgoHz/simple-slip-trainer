@@ -10,6 +10,7 @@ import {
   selectSequence
 } from '@/entities/combination';
 import { calcRateCoeficient, TrainingMode } from '@/entities/session';
+import { logSequenceDev } from './logger';
 
 export interface UsePlaybackEngineOptions {
   isPlaying: boolean;
@@ -54,6 +55,7 @@ export function usePlaybackEngine({
   const stepStartTimeRef = useRef(0);
   const prevIndexRef = useRef(0);
   const prevRepeatCountRef = useRef(0);
+  const prevSequenceTypeRef = useRef<'single' | 'combination' | null>(null);
 
   const clearTimer = () => {
     if (timerIdRef.current !== null) {
@@ -98,14 +100,18 @@ export function usePlaybackEngine({
         mixedProbability,
         defaultIntervalMs,
         prevIndex: prevIndexRef.current,
-        prevRepeatCount: prevRepeatCountRef.current
+        prevRepeatCount: prevRepeatCountRef.current,
+        prevSequenceType: prevSequenceTypeRef.current ?? undefined
       });
 
       prevIndexRef.current = result.nextIndex;
       prevRepeatCountRef.current = result.nextRepeatCount;
+      prevSequenceTypeRef.current = result.sequence.type;
       sequenceRef.current = result.sequence;
       setCurrentSequence(result.sequence);
       stepIndexRef.current = 0;
+
+      logSequenceDev(result.sequence);
 
       const firstStep = result.sequence.steps[0];
       if (firstStep) {
@@ -156,6 +162,7 @@ export function usePlaybackEngine({
       prevResetCountRef.current = resetCount;
       clearTimer();
       sequenceRef.current = null;
+      prevSequenceTypeRef.current = null;
       stepIndexRef.current = 0;
       stepRemainingMsRef.current = 0;
       setActiveSectorIndex(null);
@@ -180,6 +187,7 @@ export function usePlaybackEngine({
       prevModeRef.current = mode;
       clearTimer();
       sequenceRef.current = null;
+      prevSequenceTypeRef.current = null;
       stepIndexRef.current = 0;
       stepRemainingMsRef.current = 0;
     }

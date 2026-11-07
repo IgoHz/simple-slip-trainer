@@ -373,4 +373,48 @@ describe('usePlaybackEngine', () => {
       sectorPositionsConfig.indexOf(SectorPosition.RIGHT_LOWER)
     );
   });
+
+  it('inserts a rest delay after a single punch when followed by a combination in MIXED mode', () => {
+    // We mock Math.random:
+    // Call 1: in selectSequence (randomFn < mixedProbability) -> return 0.8 (selects SINGLE)
+    // Call 2: in selectSequence (randomFn < mixedProbability) -> return 0.2 (selects COMBO)
+    let callCount = 0;
+    const mockRandom = jest.spyOn(Math, 'random').mockImplementation(() => {
+      callCount++;
+      return callCount === 1 ? 0.8 : 0.2;
+    });
+
+    const { result } = renderHook(() =>
+      usePlaybackEngine({
+        isPlaying: true,
+        rate: 60, // 2000ms cadence
+        mode: TrainingMode.MIXED,
+        mixedProbability: 0.5,
+        combinations: [testCombo]
+      })
+    );
+
+    // Initial sequence is a single punch: punch is active immediately
+    expect(result.current.currentSequence?.type).toBe('single');
+    expect(result.current.activeSectorIndex).not.toBeNull();
+
+    // Advance 2000ms: single punch finishes, transitions to combination
+    act(() => {
+      jest.advanceTimersByTime(2000);
+    });
+
+    // Since single was followed by combo, Step 0 of combo is a rest delay!
+    expect(result.current.currentSequence?.type).toBe('combination');
+    expect(result.current.activeSectorIndex).toBeNull();
+
+    // Advance 2000ms through the rest delay
+    act(() => {
+      jest.advanceTimersByTime(2000);
+    });
+
+    // Combo punch 1 is now active!
+    expect(result.current.activeSectorIndex).not.toBeNull();
+
+    mockRandom.mockRestore();
+  });
 });

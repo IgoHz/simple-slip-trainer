@@ -325,5 +325,55 @@ describe('Sequence Selector', () => {
       expect(result.sequence.type).toBe('single');
       expect(result.sequence.steps).toHaveLength(1);
     });
+
+    it('adds leading rest step before a combo when preceded by a single punch in MIXED mode', () => {
+      const mockRandom = () => 0.2; // Select combination
+      const result = selectSequence(
+        {
+          mode: TrainingMode.MIXED,
+          rateCadence: 2000,
+          combinations: PRESET_COMBINATIONS,
+          mixedProbability: 0.5,
+          prevSequenceType: 'single'
+        },
+        mockRandom
+      );
+
+      expect(result.sequence.type).toBe('combination');
+      const firstStep = result.sequence.steps[0];
+      expect(firstStep.isRest).toBe(true);
+      expect(firstStep.sectorIndex).toBe(-1);
+      expect(firstStep.durationMs).toBe(2000);
+    });
+
+    it('does not add leading rest step before a combo when preceded by another combo or on start', () => {
+      const mockRandom = () => 0.2; // Select combination
+      const resultAfterCombo = selectSequence(
+        {
+          mode: TrainingMode.MIXED,
+          rateCadence: 2000,
+          combinations: PRESET_COMBINATIONS,
+          mixedProbability: 0.5,
+          prevSequenceType: 'combination'
+        },
+        mockRandom
+      );
+
+      expect(resultAfterCombo.sequence.type).toBe('combination');
+      expect(resultAfterCombo.sequence.steps[0].isRest).toBeFalsy();
+
+      const resultInitial = selectSequence(
+        {
+          mode: TrainingMode.MIXED,
+          rateCadence: 2000,
+          combinations: PRESET_COMBINATIONS,
+          mixedProbability: 0.5
+        },
+        mockRandom
+      );
+
+      expect(resultInitial.sequence.type).toBe('combination');
+      expect(resultInitial.sequence.steps[0].isRest).toBeFalsy();
+    });
   });
 });

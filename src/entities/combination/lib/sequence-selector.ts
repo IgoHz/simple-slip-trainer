@@ -26,6 +26,7 @@ export interface SelectSequenceParams {
   defaultIntervalMs?: number;
   prevIndex?: number;
   prevRepeatCount?: number;
+  prevSequenceType?: 'single' | 'combination';
 }
 
 export interface SelectSequenceResult {
@@ -99,7 +100,8 @@ export function selectSequence(
     mixedProbability = DEFAULT_MIXED_COMBINATION_PROBABILITY,
     defaultIntervalMs,
     prevIndex = 0,
-    prevRepeatCount = 0
+    prevRepeatCount = 0,
+    prevSequenceType
   } = params;
 
   if (mode === TrainingMode.RANDOM_SINGLES) {
@@ -120,13 +122,15 @@ export function selectSequence(
   // MIXED mode
   const shouldPlayCombination = randomFn() < mixedProbability;
   if (shouldPlayCombination) {
+    const leadRest = prevSequenceType === 'single';
     return selectCombinationSequence(
       combinations,
       defaultIntervalMs,
       rateCadence,
       prevIndex,
       prevRepeatCount,
-      randomFn
+      randomFn,
+      leadRest
     );
   }
 
@@ -166,7 +170,8 @@ function selectCombinationSequence(
   rateCadence: number,
   prevIndex: number,
   prevRepeatCount: number,
-  randomFn: () => number
+  randomFn: () => number,
+  leadRest = false
 ): SelectSequenceResult {
   const validCombinations = combinations.filter(validateCombination);
 
@@ -178,6 +183,16 @@ function selectCombinationSequence(
   const chosenCombo = validCombinations[comboIndex];
 
   const steps: PlaybackStep[] = [];
+
+  // Rest delay before combo when preceded by a single punch
+  if (leadRest) {
+    steps.push({
+      sectorIndex: -1,
+      durationMs: rateCadence,
+      isRest: true
+    });
+  }
+
   let lastIndex = prevIndex;
   const intervalMs = Math.max(
     50,
