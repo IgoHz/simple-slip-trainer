@@ -20,17 +20,25 @@ This trainer is designed to help build:
 
 ## ✨ Features
 
+- 🥊 **Training Modes**
+  - **Random Singles:** Randomized directional punches with rate-based cadence.
+  - **Combinations:** Predefined realistic boxing combinations (Jab–Cross, Double Jab, Jab–Cross–Hook, Mailman, Alternating Straights, etc.) with explicit upper/lower punch targeting.
+  - **Mixed Mode:** Seamlessly alternates between single punches and complete combinations with natural rhythm delays.
+
 - ⏱ **Stopwatch**
   Track your training sessions in real time
 
-- 📊 **Rate Counter**
-  Measure slips per minute to monitor intensity
+- 📊 **Rate Counter & Scaled Playback**
+  Adjustable punches-per-minute cadence dynamically scales combination and punch timing
 
 - 🎯 **Visual Sectors**
-  Clear visual cues for practicing directional slips
+  Clear visual pixel-art cues for practicing directional slips across upper and lower straight and hook variants
 
-- ⚙️ **Expandable Controls**
-  Adjust training behavior to fit your routine
+- ⚙️ **Expandable Controls & Mode Selector**
+  Quickly toggle training modes and adjust cadence to fit your routine
+
+- 🔍 **Development Logging**
+  Real-time console logger in development mode indicating active combos and punch sequences
 
 ---
 
@@ -76,8 +84,8 @@ src/
 ├── app/                  # Application entry point, global styles, and route entries
 ├── pages/                # Route-level page compositions (TrainerPage)
 ├── widgets/              # Composite UI blocks (Controls header, Sectors board)
-├── features/             # User actions & interactions (adjust-rate, manage-stopwatch)
-├── entities/             # Business domain models & stores (sector, session)
+├── features/             # User actions & interactions (adjust-rate, manage-stopwatch, select-mode)
+├── entities/             # Business domain models & stores (combination, sector, session)
 └── shared/               # Domain-agnostic primitives (ui components, lib hooks & utils)
 ```
 
