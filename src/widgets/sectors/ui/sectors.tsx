@@ -1,6 +1,6 @@
 'use client';
 
-import styles from './sectors.module.css';
+import clsx from 'clsx';
 import {
   Sector,
   SectorDisplayType,
@@ -45,7 +45,14 @@ export default function Sectors({ className }: SectorsProps) {
   }
 
   return (
-    <PaddingWrapper className={`${styles.sectors} ${className ?? ''}`}>
+    <PaddingWrapper
+      className={clsx(
+        'relative flex flex-wrap',
+        'mx-[var(--padding-normal)] max-[960px]:landscape:mb-[var(--padding-normal)]',
+        'border-2 border-theme-border bg-theme-foreground',
+        className
+      )}
+    >
       {sectorPositionsConfig.map((position, index) => (
         <Sector
           key={position}

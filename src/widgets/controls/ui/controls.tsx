@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useState } from 'react';
+import clsx from 'clsx';
 import styles from './controls.module.css';
 import { PaddingWrapper } from '@/shared/ui';
 import { ModeSelector } from '@/features/select-mode';
@@ -21,15 +22,21 @@ export default function Controls({ className }: ControlsProps) {
 
   return (
     <PaddingWrapper
-      className={`${styles.controls} ${isExpanded ? styles.expanded : ''} ${className ?? ''}`}
+      className={clsx(
+        styles.controls,
+        isExpanded && styles.expanded,
+        className
+      )}
     >
       <ExpandButton
         className={styles.expandButton}
         isExpanded={isExpanded}
         onClick={handleExpandClick}
       />
-      <h1 className={styles.mobileLabel}>SST</h1>
-      <h1 className={styles.desktopLabel}>Simple Slip Trainer</h1>
+      <h1 className="text-base content-center md:hidden">SST</h1>
+      <h1 className="hidden text-base content-center md:block">
+        Simple Slip Trainer
+      </h1>
       <ModeSelector className={styles.modeSelector} />
       <RateCounter className={styles.rateCounter} />
       <Stopwatch className={styles.stopwatch} />

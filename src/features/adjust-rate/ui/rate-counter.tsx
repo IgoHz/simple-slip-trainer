@@ -1,7 +1,7 @@
 'use client';
 
 import { ChangeEvent, useCallback } from 'react';
-import styles from './rate-counter.module.css';
+import clsx from 'clsx';
 import { Button, Input } from '@/shared/ui';
 import { assertValue, useStoreAsync } from '@/shared/lib';
 import {
@@ -53,7 +53,14 @@ export default function RateCounter({ className }: RateCounterProps) {
   }, [rate, setRate]);
 
   return (
-    <div className={`${styles.rateCounter} ${className ?? ''}`}>
+    <div
+      className={clsx(
+        'flex flex-nowrap items-center',
+        'gap-[var(--padding-normal)]',
+        'portrait:justify-center',
+        className
+      )}
+    >
       <span>Rate:</span>
       <Button
         label={`-${RATE_COUNTER_AMPLIFIER_VALUE}`}
@@ -61,6 +68,7 @@ export default function RateCounter({ className }: RateCounterProps) {
         onClick={handleRateDecrementClick}
       />
       <Input
+        className="max-w-16 text-center"
         aria-label="Rate counter input"
         min={RATE_COUNTER_MIN_VALUE}
         value={rate ?? RATE_COUNTER_MIN_VALUE}

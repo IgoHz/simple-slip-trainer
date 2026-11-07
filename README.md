@@ -47,7 +47,8 @@ This trainer is designed to help build:
 - **Architecture**: Feature-Sliced Design (FSD)
 - **Framework**: Next.js
 - **Language**: TypeScript
-- **Styling**: CSS Modules
+- **Styling**: Tailwind CSS v4 with CSS Modules for specialized styles
+- **Class names**: `clsx` for composing grouped and conditional Tailwind classes
 - **State Management**: Zustand
 - **Testing**: Vitest + React Testing Library
 - **Tooling**: Bun, Oxlint, Oxfmt
@@ -67,6 +68,32 @@ bun run dev
 Then open: http://localhost:3000
 
 Development requires Node.js 22.12 or newer and Bun 1.4.4.
+
+---
+
+## 🎨 Styling
+
+Tailwind CSS utilities are the default for component layout, spacing, typography,
+colors, responsive behavior, and states. Theme colors and the shared spacing and
+border values are defined in `src/app/globals.css`; use those tokens instead of
+introducing duplicate values.
+
+Use `clsx` for long class lists and conditional classes. Group utility classes by
+category in separate arguments to keep them scannable:
+
+```tsx
+className={clsx(
+  'flex items-center',
+  'gap-[var(--padding-normal)]',
+  'text-theme-text bg-theme-background',
+  isActive && 'border-theme-border'
+)}
+```
+
+Keep CSS Modules for styles that are clearer or more suitable as scoped CSS,
+such as complex responsive grid behavior, specialized button interactions, and
+sector animation keyframes. Avoid duplicating styles between utilities and
+modules.
 
 ---
 

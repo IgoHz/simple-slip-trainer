@@ -1,27 +1,12 @@
 .button {
-  font-family: var(--font-silkscreen), Arial, sans-serif;
-  font-size: 0.875rem;
-  line-height: 1rem;
-
   appearance: none;
   -webkit-appearance: none;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
 
-  padding: var(--padding-normal);
-
-  color: var(--theme-color-text);
-  background: var(--theme-color-background);
-
-  border: var(--border-size) solid var(--theme-color-border);
-
   transition:
     border-color 0.2s ease-in-out,
     filter 0.2s ease-in-out;
-
-  svg {
-    display: block;
-  }
 
   &:focus-visible {
     outline: 1px solid var(--theme-color-border);

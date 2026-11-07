@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import styles from './padding-wrapper.module.css';
+import clsx from 'clsx';
 
 export interface PaddingWrapperProps {
   children: ReactNode;
@@ -11,7 +11,7 @@ export default function PaddingWrapper({
   className
 }: PaddingWrapperProps) {
   return (
-    <div className={`${styles.paddingWrapper} ${className ?? ''}`}>
+    <div className={clsx('p-[var(--padding-normal)]', className)}>
       {children}
     </div>
   );

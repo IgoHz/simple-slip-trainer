@@ -7,17 +7,6 @@
     display: none;
   }
 
-  .mobileLabel,
-  .desktopLabel {
-    font-size: 1rem;
-
-    align-content: center;
-  }
-
-  .desktopLabel {
-    display: none;
-  }
-
   @media (orientation: portrait) {
     grid-template-columns: auto 1fr auto;
     grid-template-areas:
@@ -49,16 +38,6 @@
 
     .stopwatch {
       grid-area: stopwatch;
-    }
-  }
-
-  @media (min-width: 768px) {
-    .mobileLabel {
-      display: none;
-    }
-
-    .desktopLabel {
-      display: revert;
     }
   }
 }

@@ -1,4 +1,5 @@
 import { ComponentProps, memo, ReactNode } from 'react';
+import clsx from 'clsx';
 import styles from './button.module.css';
 
 export interface ButtonProps extends ComponentProps<'button'> {
@@ -8,7 +9,18 @@ export interface ButtonProps extends ComponentProps<'button'> {
 
 function Button({ className, label, icon, ...restProps }: ButtonProps) {
   return (
-    <button className={`${styles.button} ${className ?? ''}`} {...restProps}>
+    <button
+      className={clsx(
+        'font-sans text-sm leading-4',
+        'p-[var(--padding-normal)]',
+        'text-theme-text bg-theme-background',
+        'border-2 border-theme-border',
+        '[&_svg]:block',
+        styles.button,
+        className
+      )}
+      {...restProps}
+    >
       {label} {icon}
     </button>
   );

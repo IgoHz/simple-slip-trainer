@@ -1,5 +1,4 @@
 import { JSX, memo } from 'react';
-import styles from './icon.module.css';
 
 const iconStrategies = {
   play: playStrategy,
@@ -30,7 +29,7 @@ function Icon(props: IconProps): JSX.Element {
       shapeRendering="crispEdges"
       xmlns="http://www.w3.org/2000/svg"
       fill="currentColor"
-      className={styles.icon}
+      className="text-base"
       aria-hidden
       {...rest}
     >

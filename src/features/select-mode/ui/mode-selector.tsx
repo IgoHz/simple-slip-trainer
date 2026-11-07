@@ -1,7 +1,7 @@
 'use client';
 
 import { memo, useCallback } from 'react';
-import styles from './mode-selector.module.css';
+import clsx from 'clsx';
 import { Button } from '@/shared/ui';
 import {
   modeSelector,
@@ -47,18 +47,29 @@ export function ModeSelector({ className }: ModeSelectorProps) {
 
   return (
     <div
-      className={`${styles.modeSelector} ${className ?? ''}`}
+      className={clsx(
+        'flex items-center',
+        'gap-[var(--padding-normal)]',
+        'portrait:justify-center',
+        className
+      )}
       role="group"
       aria-label="Training mode"
     >
-      <span className={styles.label}>Mode:</span>
-      <div className={styles.buttonGroup}>
+      <span className="text-sm">Mode:</span>
+      <div className="flex gap-[var(--padding-normal)]">
         {MODES.map(({ mode, label, ariaLabel }) => {
           const isActive = currentMode === mode;
           return (
             <Button
               key={mode}
-              className={`${styles.button} ${isActive ? styles.active : ''}`}
+              className={clsx(
+                '!px-[6px] !py-[var(--padding-normal)]',
+                '!text-xs !leading-[0.875rem]',
+                isActive && '!bg-theme-text',
+                isActive && '!border-theme-text',
+                isActive && '!text-theme-background'
+              )}
               aria-label={ariaLabel}
               aria-pressed={isActive}
               label={label}

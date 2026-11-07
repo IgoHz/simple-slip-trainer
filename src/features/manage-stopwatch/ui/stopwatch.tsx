@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useState } from 'react';
-import styles from './stopwatch.module.css';
+import clsx from 'clsx';
 import { useInterval, formatSecondsToTime } from '@/shared/lib';
 import {
   isPlayingSelector,
@@ -41,9 +41,16 @@ export default function Stopwatch({ className }: StopwatchProps) {
   }, [resetSession]);
 
   return (
-    <div className={`${styles.stopwatch} ${className ?? ''}`}>
+    <div
+      className={clsx(
+        'flex items-center justify-center',
+        'gap-[var(--padding-normal)]',
+        'md:justify-start',
+        className
+      )}
+    >
       <span>Time:</span>
-      <div className={styles.time}>{formatSecondsToTime(time)}</div>
+      <div className="inline w-[3.375rem]">{formatSecondsToTime(time)}</div>
       <PlayPauseButton isPlaying={isPlaying} onClick={handlePlayPauseClick} />
       <StopButton disabled={isPlaying || !time} onClick={handleResetClick} />
     </div>
