@@ -22,8 +22,15 @@ This trainer is designed to help build:
 
 - 🥊 **Training Modes**
   - **Random Singles:** Randomized directional punches with rate-based cadence.
-  - **Combinations:** Predefined realistic boxing combinations (Jab–Cross, Double Jab, Jab–Cross–Hook, Mailman, Alternating Straights, etc.) with explicit upper/lower punch targeting.
+  - **Combinations:** Predefined and custom boxing combinations with explicit upper/lower punch targeting.
   - **Mixed Mode:** Seamlessly alternates between single punches and complete combinations with natural rhythm delays.
+
+- 📝 **Combination Manager & Local Persistence**
+  - Create, view, edit, and delete custom punch combinations directly from the header drawer.
+  - Full punch sequence editor supporting head (`High`) and body (`Low`) straight punches and hooks.
+  - Custom pixel-art select component and reordering controls (`↑`, `↓`, `🗑`).
+  - Seamless `localStorage` persistence with built-in default presets and recovery/reset options.
+  - Real-time engine integration: changes to combinations immediately affect trainer playback.
 
 - ⏱ **Stopwatch**
   Track your training sessions in real time
@@ -118,7 +125,7 @@ src/
 ├── app/                  # Application entry point, global styles, and route entries
 ├── pages/                # Route-level page compositions (TrainerPage)
 ├── widgets/              # Composite UI blocks (Controls header, Sectors board)
-├── features/             # User actions & interactions (adjust-rate, manage-stopwatch, select-mode)
+├── features/             # User actions & interactions (adjust-rate, manage-combinations, manage-stopwatch, select-mode)
 ├── entities/             # Business domain models & stores (combination, sector, session)
 └── shared/               # Domain-agnostic primitives (ui components, lib hooks & utils)
 ```

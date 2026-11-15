@@ -25,3 +25,17 @@ export interface PlaybackSequence {
   combinationName?: string;
   steps: PlaybackStep[];
 }
+
+export interface CombinationState {
+  combinations: PunchCombination[];
+  addCombination: (
+    combo: Omit<PunchCombination, 'id'> & { id?: string }
+  ) => PunchCombination;
+  updateCombination: (
+    id: string,
+    updates: Partial<Omit<PunchCombination, 'id'>>
+  ) => void;
+  deleteCombination: (id: string) => void;
+  resetToDefaults: () => void;
+  setCombinations: (combinations: PunchCombination[]) => void;
+}

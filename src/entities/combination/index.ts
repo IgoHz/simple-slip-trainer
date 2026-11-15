@@ -2,8 +2,24 @@ export type {
   CombinationPunch,
   PunchCombination,
   PlaybackStep,
-  PlaybackSequence
+  PlaybackSequence,
+  CombinationState
 } from './model/types';
+
+export {
+  useCombinationStore,
+  generateCombinationId,
+  createCombinationStorage
+} from './model/store';
+
+export {
+  combinationsSelector,
+  addCombinationSelector,
+  updateCombinationSelector,
+  deleteCombinationSelector,
+  resetToDefaultsSelector,
+  setCombinationsSelector
+} from './model/selectors';
 
 export {
   PRESET_COMBINATIONS,

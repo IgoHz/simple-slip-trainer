@@ -7,6 +7,9 @@ export type { IconName, IconProps } from './icon';
 export { Input, InputSkeleton } from './input';
 export type { InputProps } from './input';
 
+export { Select } from './select';
+export type { SelectProps, SelectOption } from './select';
+
 export { PaddingWrapper } from './padding-wrapper';
 export type { PaddingWrapperProps } from './padding-wrapper';
 

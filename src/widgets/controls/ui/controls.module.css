@@ -1,6 +1,7 @@
 .controls {
   display: grid;
-  grid-template-columns: 1fr auto auto auto;
+  grid-template-columns: auto 1fr auto auto auto;
+  align-items: center;
   gap: 16px;
 
   .expandButton {
@@ -8,15 +9,15 @@
   }
 
   @media (orientation: portrait) {
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto 1fr auto auto;
     grid-template-areas:
-      'button label stopwatch'
-      'mode-selector mode-selector mode-selector'
-      'rate-counter rate-counter rate-counter';
+      'menu label stopwatch expand'
+      'mode-selector mode-selector mode-selector mode-selector'
+      'rate-counter rate-counter rate-counter rate-counter';
     gap: 8px;
 
     &:not(.expanded) {
-      grid-template-areas: 'button label stopwatch';
+      grid-template-areas: 'menu label stopwatch expand';
 
       .modeSelector,
       .rateCounter {
@@ -24,7 +25,16 @@
       }
     }
 
+    .menuButton {
+      grid-area: menu;
+    }
+
+    .title {
+      grid-area: label;
+    }
+
     .expandButton {
+      grid-area: expand;
       display: revert;
     }
 

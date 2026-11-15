@@ -50,12 +50,17 @@ export function usePlaybackEngine({
 
   const timerIdRef = useRef<NodeJS.Timeout | number | null>(null);
   const sequenceRef = useRef<PlaybackSequence | null>(null);
+  const combinationsRef = useRef(combinations);
   const stepIndexRef = useRef(0);
   const stepRemainingMsRef = useRef(0);
   const stepStartTimeRef = useRef(0);
   const prevIndexRef = useRef(0);
   const prevRepeatCountRef = useRef(0);
   const prevSequenceTypeRef = useRef<'single' | 'combination' | null>(null);
+
+  useEffect(() => {
+    combinationsRef.current = combinations;
+  }, [combinations]);
 
   const clearTimer = () => {
     if (timerIdRef.current !== null) {
@@ -96,7 +101,7 @@ export function usePlaybackEngine({
       const result = selectSequence({
         mode,
         rateCadence,
-        combinations,
+        combinations: combinationsRef.current,
         mixedProbability,
         defaultIntervalMs,
         prevIndex: prevIndexRef.current,

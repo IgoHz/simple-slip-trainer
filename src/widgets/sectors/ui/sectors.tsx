@@ -2,6 +2,11 @@
 
 import clsx from 'clsx';
 import {
+  combinationsSelector,
+  PRESET_COMBINATIONS,
+  useCombinationStore
+} from '@/entities/combination';
+import {
   Sector,
   SectorDisplayType,
   sectorPositionsConfig
@@ -28,13 +33,17 @@ export default function Sectors({ className }: SectorsProps) {
   const mode =
     useStoreAsync(useSessionStore, modeSelector) ?? TrainingMode.RANDOM_SINGLES;
   const resetCount = useSessionStore(resetCountSelector);
+  const combinations =
+    useStoreAsync(useCombinationStore, combinationsSelector) ??
+    PRESET_COMBINATIONS;
 
   const { activeSectorIndex, animationDuration, animationKey } =
     usePlaybackEngine({
       isPlaying,
       rate,
       mode,
-      resetCount
+      resetCount,
+      combinations
     });
 
   function getDisplayType(index: number): SectorDisplayType {
