@@ -9,6 +9,7 @@ import { RateCounter } from '@/features/adjust-rate';
 import { Stopwatch } from '@/features/manage-stopwatch';
 import { CombinationManager, MenuButton } from '@/features/manage-combinations';
 import ExpandButton from './expand-button';
+import { ThemeToggle } from './theme-toggle';
 
 export interface ControlsProps {
   className?: string;
@@ -56,6 +57,10 @@ export default function Controls({ className }: ControlsProps) {
         <ModeSelector className={styles.modeSelector} />
         <RateCounter className={styles.rateCounter} />
         <Stopwatch className={styles.stopwatch} />
+        <ThemeToggle
+          className={styles.themeSelector}
+          labelClassName={styles.themeLabel}
+        />
         <ExpandButton
           className={styles.expandButton}
           isExpanded={isExpanded}

@@ -1,6 +1,6 @@
 .controls {
   display: grid;
-  grid-template-columns: auto 1fr auto auto auto;
+  grid-template-columns: auto 1fr auto auto auto auto;
   align-items: center;
   gap: 16px;
 
@@ -13,6 +13,7 @@
     grid-template-areas:
       'menu label stopwatch expand'
       'mode-selector mode-selector mode-selector mode-selector'
+      'theme theme theme theme'
       'rate-counter rate-counter rate-counter rate-counter';
     gap: 8px;
 
@@ -20,6 +21,7 @@
       grid-template-areas: 'menu label stopwatch expand';
 
       .modeSelector,
+      .themeSelector,
       .rateCounter {
         display: none;
       }
@@ -49,5 +51,26 @@
     .stopwatch {
       grid-area: stopwatch;
     }
+
+    .themeSelector {
+      grid-area: theme;
+      justify-content: center;
+    }
+
+    .themeLabel {
+      display: inline;
+      text-transform: capitalize;
+    }
   }
+}
+
+.themeSelector {
+  display: flex;
+  align-items: center;
+  gap: var(--padding-normal);
+}
+
+.themeLabel {
+  display: none;
+  font-size: 0.75rem;
 }

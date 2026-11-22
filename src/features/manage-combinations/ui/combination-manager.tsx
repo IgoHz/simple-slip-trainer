@@ -140,7 +140,7 @@ export function CombinationManager({
     >
       <button
         type="button"
-        className="fixed inset-0 bg-black/50 backdrop-blur-xs cursor-default transition-opacity animate-in fade-in duration-200"
+        className="fixed inset-0 bg-[var(--theme-color-overlay)] backdrop-blur-xs cursor-default transition-opacity animate-in fade-in duration-200"
         aria-label="Backdrop"
         tabIndex={-1}
         onClick={handleBackdropClick}

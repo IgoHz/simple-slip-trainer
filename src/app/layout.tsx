@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Silkscreen } from 'next/font/google';
+import { THEME_STORAGE_KEY } from '@/shared/lib/theme';
 import './globals.css';
 
 const silkscreen = Silkscreen({
@@ -7,6 +8,17 @@ const silkscreen = Silkscreen({
   weight: ['400', '700'],
   subsets: ['latin']
 });
+
+const themeInitializationScript = `
+try {
+  const theme = window.localStorage.getItem('${THEME_STORAGE_KEY}');
+  if (theme === 'dark' || theme === 'light') {
+    document.documentElement.dataset.theme = theme;
+  }
+} catch {
+  document.documentElement.dataset.theme = 'dark';
+}
+`;
 
 export const metadata: Metadata = {
   title: 'Simple Slip Trainer',
@@ -37,7 +49,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="dark" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{ __html: themeInitializationScript }}
+        />
+      </head>
       <body className={silkscreen.variable}>{children}</body>
     </html>
   );

@@ -14,7 +14,9 @@ const iconStrategies = {
   edit: editStrategy,
   arrowUp: arrowUpStrategy,
   arrowDown: arrowDownStrategy,
-  reset: resetStrategy
+  reset: resetStrategy,
+  sun: sunStrategy,
+  moon: moonStrategy
 } as const;
 
 export type IconName = keyof typeof iconStrategies;
@@ -195,6 +197,37 @@ function resetStrategy() {
       <rect x="12" y="5" width="2" height="5" />
       <rect x="10" y="3" width="2" height="3" />
       <rect x="8" y="5" width="2" height="2" />
+    </>
+  );
+}
+
+function sunStrategy() {
+  return (
+    <>
+      <rect x="7" y="1" width="2" height="3" />
+      <rect x="7" y="12" width="2" height="3" />
+      <rect x="1" y="7" width="3" height="2" />
+      <rect x="12" y="7" width="3" height="2" />
+      <rect x="3" y="3" width="2" height="2" />
+      <rect x="11" y="3" width="2" height="2" />
+      <rect x="3" y="11" width="2" height="2" />
+      <rect x="11" y="11" width="2" height="2" />
+      <rect x="5" y="5" width="6" height="6" />
+    </>
+  );
+}
+
+function moonStrategy() {
+  return (
+    <>
+      <rect x="8" y="1" width="4" height="2" />
+      <rect x="5" y="3" width="5" height="2" />
+      <rect x="4" y="5" width="5" height="6" />
+      <rect x="5" y="11" width="5" height="2" />
+      <rect x="8" y="13" width="4" height="2" />
+      <rect x="10" y="3" width="2" height="2" />
+      <rect x="12" y="5" width="2" height="6" />
+      <rect x="10" y="11" width="2" height="2" />
     </>
   );
 }

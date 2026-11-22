@@ -7,26 +7,43 @@
   --color-theme-background: var(--theme-color-background);
   --color-theme-foreground: var(--theme-color-foreground);
   --color-theme-text: var(--theme-color-text);
+  --color-theme-muted-text: var(--theme-color-muted-text);
   --color-theme-border: var(--theme-color-border);
+  --color-theme-header: var(--theme-color-header);
+  --color-theme-footer: var(--theme-color-footer);
   --font-sans: var(--font-silkscreen), Arial, sans-serif;
 }
 
 :root {
-  --theme-color-background: #e1e1e1;
-  --theme-color-foreground: #a9a9a9;
-  --theme-color-text: #191919;
-  --theme-color-border: #808080;
-
   --padding-normal: 4px;
-
   --border-size: 2px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --theme-color-background: #191919;
-    --theme-color-text: #e1e1e1;
-  }
+:root,
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --theme-color-background: #191919;
+  --theme-color-foreground: #a9a9a9;
+  --theme-color-text: #e1e1e1;
+  --theme-color-muted-text: #b6b6b6;
+  --theme-color-border: #808080;
+  --theme-color-header: #191919;
+  --theme-color-footer: #191919;
+  --theme-color-overlay: rgb(0 0 0 / 50%);
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  --theme-color-background: #e1e1e1;
+  --theme-color-foreground: #a9a9a9;
+  --theme-color-text: #191919;
+  --theme-color-muted-text: #191919;
+  --theme-color-border: #808080;
+  --theme-color-header: #e1e1e1;
+  --theme-color-footer: #e1e1e1;
+  --theme-color-overlay: rgb(30 28 22 / 35%);
 }
 
 @layer base {
@@ -54,11 +71,5 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    html {
-      color-scheme: dark;
-    }
   }
 }
