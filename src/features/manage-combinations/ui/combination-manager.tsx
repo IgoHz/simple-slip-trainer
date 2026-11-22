@@ -163,7 +163,7 @@ export function CombinationManager({
             {view !== 'list' && (
               <Button
                 className="!p-1 text-xs"
-                label="←"
+                icon={<Icon iconName="arrowLeft" />}
                 aria-label="Back to combination list"
                 title="Back to list"
                 onClick={handleFormCancel}

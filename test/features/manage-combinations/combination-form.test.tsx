@@ -33,7 +33,8 @@ describe('CombinationForm', () => {
     const toggleBtnStep2 = screen.getByRole('button', {
       name: /toggle level for step 2/i
     });
-    expect(toggleBtnStep2).toHaveTextContent('↓ Low');
+    expect(toggleBtnStep2).toHaveTextContent('Low');
+    expect(toggleBtnStep2.querySelector('svg')).toBeInTheDocument();
   });
 
   it('rejects empty name and does not call onSave', async () => {

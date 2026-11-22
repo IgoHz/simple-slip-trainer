@@ -2,6 +2,7 @@ import { memo } from 'react';
 import clsx from 'clsx';
 import { CombinationPunch } from '@/entities/combination';
 import { SectorPosition, toPunchType } from '@/entities/sector';
+import { Icon } from '@/shared/ui';
 import {
   getPunchLevel,
   isStraightPunch,
@@ -36,8 +37,13 @@ export function PunchBadge({
 
   const label = compact ? PUNCH_SHORT_LABELS[punchType] : positionLabel;
 
-  const punchTypeIcon = isStraight ? '→' : punchType === 'leftHook' ? '↶' : '↷';
+  const punchIconName = isStraight
+    ? 'arrowRight'
+    : punchType === 'leftHook'
+      ? 'hookLeft'
+      : 'hookRight';
 
+  const punchTypeIcon = isStraight ? '→' : punchType === 'leftHook' ? '↶' : '↷';
   const levelIcon = isUpper ? '↑' : '↓';
 
   return (
@@ -60,17 +66,21 @@ export function PunchBadge({
     >
       <span
         className={clsx(
-          'text-[11px] font-bold leading-none',
-          isUpper ? 'opacity-90' : 'opacity-100 font-extrabold'
+          'inline-flex items-center shrink-0',
+          isUpper ? 'opacity-90' : 'opacity-100'
         )}
-        aria-hidden="true"
         title={isUpper ? 'Higher punch' : 'Lower punch'}
       >
-        {levelIcon}
+        <Icon
+          iconName={isUpper ? 'arrowUp' : 'arrowDown'}
+          className="w-2.5 h-2.5 shrink-0"
+        />
+        <span className="sr-only">{levelIcon}</span>
       </span>
       {showIcon && (
-        <span className="text-[10px] leading-none" aria-hidden="true">
-          {punchTypeIcon}
+        <span className="inline-flex items-center shrink-0">
+          <Icon iconName={punchIconName} className="w-2.5 h-2.5 shrink-0" />
+          <span className="sr-only">{punchTypeIcon}</span>
         </span>
       )}
       <span>{label}</span>

@@ -116,12 +116,10 @@ export function CombinationList({
                   <div key={index} className="flex items-center gap-1">
                     <PunchBadge punch={punch} compact={true} />
                     {index < combo.punches.length - 1 && (
-                      <span
-                        className="text-[10px] text-theme-border font-bold select-none"
-                        aria-hidden="true"
-                      >
-                        →
-                      </span>
+                      <Icon
+                        iconName="arrowRight"
+                        className="w-2.5 h-2.5 text-theme-border shrink-0 select-none"
+                      />
                     )}
                   </div>
                 ))}

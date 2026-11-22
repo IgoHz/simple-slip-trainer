@@ -46,7 +46,7 @@ describe('PunchSequenceEditor', () => {
     );
 
     // Switch level to Low (Body)
-    await user.click(screen.getByRole('button', { name: /↓ Low \(Body\)/i }));
+    await user.click(screen.getByRole('button', { name: /Low \(Body\)/i }));
 
     // Click + Right Hook
     await user.click(screen.getByRole('button', { name: /\+.*Right Hook/i }));
@@ -71,7 +71,8 @@ describe('PunchSequenceEditor', () => {
     const toggleBtn = screen.getByRole('button', {
       name: /toggle level for step 1/i
     });
-    expect(toggleBtn).toHaveTextContent('↑ High');
+    expect(toggleBtn).toHaveTextContent('High');
+    expect(toggleBtn.querySelector('svg')).toBeInTheDocument();
 
     await user.click(toggleBtn);
     expect(handleChange).toHaveBeenCalledWith([

@@ -5,9 +5,16 @@ import styles from './button.module.css';
 export interface ButtonProps extends ComponentProps<'button'> {
   label?: string;
   icon?: ReactNode;
+  iconPosition?: 'left' | 'right';
 }
 
-function Button({ className, label, icon, ...restProps }: ButtonProps) {
+function Button({
+  className,
+  label,
+  icon,
+  iconPosition = 'right',
+  ...restProps
+}: ButtonProps) {
   return (
     <button
       className={clsx(
@@ -21,7 +28,9 @@ function Button({ className, label, icon, ...restProps }: ButtonProps) {
       )}
       {...restProps}
     >
-      {label} {icon}
+      {iconPosition === 'left' && icon}
+      {label}
+      {iconPosition === 'right' && icon}
     </button>
   );
 }

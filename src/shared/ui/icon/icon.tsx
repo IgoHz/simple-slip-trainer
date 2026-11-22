@@ -1,4 +1,5 @@
 import { JSX, memo } from 'react';
+import clsx from 'clsx';
 
 const iconStrategies = {
   play: playStrategy,
@@ -14,6 +15,10 @@ const iconStrategies = {
   edit: editStrategy,
   arrowUp: arrowUpStrategy,
   arrowDown: arrowDownStrategy,
+  arrowRight: arrowRightStrategy,
+  arrowLeft: arrowLeftStrategy,
+  hookLeft: hookLeftStrategy,
+  hookRight: hookRightStrategy,
   reset: resetStrategy
 } as const;
 
@@ -27,7 +32,7 @@ export type IconProps = Omit<
 };
 
 function Icon(props: IconProps): JSX.Element {
-  const { iconName, ...rest } = props;
+  const { iconName, className, ...rest } = props;
 
   return (
     <svg
@@ -37,7 +42,7 @@ function Icon(props: IconProps): JSX.Element {
       shapeRendering="crispEdges"
       xmlns="http://www.w3.org/2000/svg"
       fill="currentColor"
-      className="text-base"
+      className={clsx('inline-block', className || 'text-base')}
       aria-hidden
       {...rest}
     >
@@ -182,6 +187,58 @@ function arrowDownStrategy() {
       <rect x="3" y="8" width="10" height="2" />
       <rect x="5" y="10" width="6" height="2" />
       <rect x="7" y="12" width="2" height="2" />
+    </>
+  );
+}
+
+function arrowRightStrategy() {
+  return (
+    <>
+      <rect x="2" y="7" width="6" height="2" />
+      <rect x="8" y="3" width="2" height="10" />
+      <rect x="10" y="5" width="2" height="6" />
+      <rect x="12" y="7" width="2" height="2" />
+    </>
+  );
+}
+
+function arrowLeftStrategy() {
+  return (
+    <>
+      <rect x="8" y="7" width="6" height="2" />
+      <rect x="6" y="3" width="2" height="10" />
+      <rect x="4" y="5" width="2" height="6" />
+      <rect x="2" y="7" width="2" height="2" />
+    </>
+  );
+}
+
+function hookLeftStrategy() {
+  return (
+    <>
+      <rect x="11" y="6" width="2" height="7" />
+      <rect x="9" y="3" width="3" height="2" />
+      <rect x="5" y="2" width="5" height="2" />
+      <rect x="3" y="3" width="3" height="2" />
+      <rect x="3" y="5" width="2" height="3" />
+      <rect x="1" y="8" width="6" height="2" />
+      <rect x="2" y="10" width="4" height="2" />
+      <rect x="3" y="12" width="2" height="2" />
+    </>
+  );
+}
+
+function hookRightStrategy() {
+  return (
+    <>
+      <rect x="3" y="6" width="2" height="7" />
+      <rect x="4" y="3" width="3" height="2" />
+      <rect x="6" y="2" width="5" height="2" />
+      <rect x="10" y="3" width="3" height="2" />
+      <rect x="11" y="5" width="2" height="3" />
+      <rect x="9" y="8" width="6" height="2" />
+      <rect x="10" y="10" width="4" height="2" />
+      <rect x="11" y="12" width="2" height="2" />
     </>
   );
 }

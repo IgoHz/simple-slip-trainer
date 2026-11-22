@@ -33,20 +33,17 @@ const PUNCH_SELECT_OPTIONS: Array<SelectOption<SectorPosition>> =
     const isStraight = isStraightPunch(punchType);
     const isLeftHook =
       pos === SectorPosition.LEFT_UPPER || pos === SectorPosition.LEFT_LOWER;
-    const punchIcon = isStraight ? '→' : isLeftHook ? '↶' : '↷';
+    const iconName = isStraight
+      ? 'arrowRight'
+      : isLeftHook
+        ? 'hookLeft'
+        : 'hookRight';
 
     return {
       value: pos,
       label: PUNCH_POSITION_LABELS[pos],
       group: isUpper ? 'High / Upper (Head)' : 'Low / Lower (Body)',
-      icon: (
-        <span
-          className="font-mono text-xs opacity-75 shrink-0"
-          aria-hidden="true"
-        >
-          {punchIcon}
-        </span>
-      )
+      icon: <Icon iconName={iconName} className="w-3 h-3 opacity-80 shrink-0" />
     };
   });
 
@@ -152,12 +149,19 @@ export function PunchSequenceEditor({
                 <Button
                   type="button"
                   className={clsx(
-                    '!h-7 !px-2 text-xs font-bold shrink-0 flex items-center justify-center whitespace-nowrap',
+                    '!h-7 !px-2 text-xs font-bold shrink-0 flex items-center justify-center gap-1 whitespace-nowrap',
                     isUpper
                       ? '!bg-theme-background !text-theme-text'
                       : '!bg-theme-text !border-theme-text !text-theme-background'
                   )}
-                  label={isUpper ? '↑ High' : '↓ Low'}
+                  icon={
+                    <Icon
+                      iconName={isUpper ? 'arrowUp' : 'arrowDown'}
+                      className="w-2.5 h-2.5 shrink-0"
+                    />
+                  }
+                  iconPosition="left"
+                  label={isUpper ? 'High' : 'Low'}
                   aria-label={`Toggle level for step ${index + 1}`}
                   title={
                     isUpper
@@ -236,24 +240,28 @@ export function PunchSequenceEditor({
           <Button
             type="button"
             className={clsx(
-              '!h-8 text-xs font-bold flex items-center justify-center whitespace-nowrap',
+              '!h-8 text-xs font-bold flex items-center justify-center gap-1.5 whitespace-nowrap',
               selectedLevel === PunchLevel.UPPER
                 ? '!bg-theme-text !border-theme-text !text-theme-background'
                 : 'hover:border-theme-text'
             )}
-            label="↑ High (Head)"
+            icon={<Icon iconName="arrowUp" className="w-3 h-3 shrink-0" />}
+            iconPosition="left"
+            label="High (Head)"
             aria-pressed={selectedLevel === PunchLevel.UPPER}
             onClick={() => setSelectedLevel(PunchLevel.UPPER)}
           />
           <Button
             type="button"
             className={clsx(
-              '!h-8 text-xs font-bold flex items-center justify-center whitespace-nowrap',
+              '!h-8 text-xs font-bold flex items-center justify-center gap-1.5 whitespace-nowrap',
               selectedLevel === PunchLevel.LOWER
                 ? '!bg-theme-text !border-theme-text !text-theme-background'
                 : 'hover:border-theme-text'
             )}
-            label="↓ Low (Body)"
+            icon={<Icon iconName="arrowDown" className="w-3 h-3 shrink-0" />}
+            iconPosition="left"
+            label="Low (Body)"
             aria-pressed={selectedLevel === PunchLevel.LOWER}
             onClick={() => setSelectedLevel(PunchLevel.LOWER)}
           />
@@ -262,11 +270,11 @@ export function PunchSequenceEditor({
         {/* Symmetrically Sized Punch Buttons */}
         <div className="grid grid-cols-2 gap-2 auto-rows-fr">
           {ALL_PUNCH_TYPES.map((type) => {
-            const punchIcon = isStraightPunch(type)
-              ? '→'
+            const iconName = isStraightPunch(type)
+              ? 'arrowRight'
               : type === PunchType.LEFT_HOOK
-                ? '↶'
-                : '↷';
+                ? 'hookLeft'
+                : 'hookRight';
             return (
               <Button
                 key={type}
@@ -275,12 +283,10 @@ export function PunchSequenceEditor({
                 onClick={() => handleAddPunch(type)}
                 label={`+ ${PUNCH_LABELS[type]}`}
                 icon={
-                  <span
-                    className="text-xs opacity-75 font-mono ml-1"
-                    aria-hidden="true"
-                  >
-                    {punchIcon}
-                  </span>
+                  <Icon
+                    iconName={iconName}
+                    className="w-3 h-3 opacity-80 shrink-0 ml-1"
+                  />
                 }
               />
             );
